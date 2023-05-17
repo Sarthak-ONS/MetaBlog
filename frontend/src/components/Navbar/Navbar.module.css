@@ -1,0 +1,48 @@
+nav {
+  color: var(--color-text);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 2rem 5rem;
+  padding: 0rem 2rem;
+}
+
+.nav__brand {
+  font-size: 25px;
+}
+
+.nav__brand span {
+  font-weight: 800;
+}
+
+.nav__links-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.nav__links {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.nav__links-link {
+  margin: 0 0.75rem;
+  font-size: 15px;
+  font-family: var(--font-base);
+  text-transform: uppercase;
+}
+input {
+  background-color: #242535;
+  outline: none;
+  border: none;
+  font-size: 15px;
+  height: 1.75rem;
+  border-radius: 5px;
+  padding: 0.25rem 1rem;
+}
+input::placeholder {
+  font-size: 12px;
+  font-family: var(--font-base);
+}
