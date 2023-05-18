@@ -9,6 +9,7 @@ nav {
 
 .nav__brand {
   font-size: 25px;
+  color: var(--color-text);
 }
 
 .nav__brand span {
@@ -33,16 +34,61 @@ nav {
   font-family: var(--font-base);
   text-transform: uppercase;
 }
-input {
-  background-color: #242535;
-  outline: none;
-  border: none;
-  font-size: 15px;
-  height: 1.75rem;
-  border-radius: 5px;
-  padding: 0.25rem 1rem;
+
+.nav__mobile {
+  display: none;
 }
-input::placeholder {
-  font-size: 12px;
-  font-family: var(--font-base);
+
+.menu-icon__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.nav_mobile-container {
+  display: flex;
+  align-items: flex-end;
+  background-color: #fff;
+}
+
+.navbar-menu_container-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--color-bg);
+  margin: 1rem;
+  height: 100vh;
+}
+
+.navbar-menu_container-link {
+  background-color: var(--color-bg);
+  padding: 1rem 0;
+}
+
+.navbar-menu_container-link a {
+  color: var(--color-text);
+  text-decoration: none;
+  background: none;
+}
+
+.nav__button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 0 1rem
+}
+
+@media (max-width: 900px) {
+  nav {
+    display: none;
+  }
+  .nav__mobile {
+    margin: 2rem 1rem;
+    padding: 0rem 1rem;
+    display: flex;
+    justify-content: space-between;
+  }
 }

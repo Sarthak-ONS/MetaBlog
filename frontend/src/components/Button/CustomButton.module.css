@@ -1,0 +1,11 @@
+button {
+  background-color: var(--color-text);
+  border: none;
+  font-size: 12px;
+  border-radius: 5px;
+  padding: 0.50rem 1rem;
+  color: white;
+  font-family: var(--font-base);
+  font-weight: 600;
+  cursor: pointer;
+}

@@ -2,8 +2,8 @@
 
 :root {
   --font-base: "Poppins", sans-serif;
-  --color-bg: #040c18;
-  --color-text: #ffffff;
+  --color-text: #040c18;
+  --color-bg: #ffffff;
 }
 
 * {
