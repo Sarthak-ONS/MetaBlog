@@ -35,8 +35,8 @@
   font-size: 1.25rem;
 }
 
-.aboutPage-content__container2-para p:last-child{
-    font-weight: 500;
+.aboutPage-content__container2-para p:last-child {
+  font-weight: 500;
 }
 
 @media (max-width: 900px) {
@@ -44,7 +44,7 @@
     flex-direction: column;
   }
 
-  .aboutPage-content__container2-heading p{
+  .aboutPage-content__container2-heading p {
     font-size: 3rem;
   }
   .aboutPage-content__container2-para p {

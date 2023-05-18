@@ -102,16 +102,48 @@ const Navbar = () => {
       {toggleMenu && (
         <div className={classes["navbar-menu_container-links"]}>
           <p className={classes["navbar-menu_container-link"]}>
-            <a href="#home">Home</a>
+            <NavLink
+              onClick={menuCloseClickHandler}
+              to="/"
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+            >
+              Home
+            </NavLink>
           </p>
           <p className={classes["navbar-menu_container-link"]}>
-            <a href="#wgpt3">Blogs</a>
+            <NavLink
+             onClick={menuCloseClickHandler}
+              to="/blog"
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+            >
+              Blog
+            </NavLink>
           </p>
           <p className={classes["navbar-menu_container-link"]}>
-            <a href="#possibility">Pages</a>
+            <NavLink
+             onClick={menuCloseClickHandler}
+              to="/about"
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+            >
+              Our Story
+            </NavLink>
           </p>
           <p className={classes["navbar-menu_container-link"]}>
-            <a href="#features">Contact</a>
+            <NavLink
+             onClick={menuCloseClickHandler}
+              to="/contact"
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+            >
+              Contact
+            </NavLink>
           </p>
         </div>
       )}
