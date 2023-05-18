@@ -8,15 +8,46 @@
   flex: 0.5;
   padding: 1rem;
   text-align: justify;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 300;
 }
 .aboutPage-content__container-video {
   flex: 0.5;
 }
 
+.aboutPage-content__container2 {
+  background-color: #ffd1b9;
+  height: 70vh;
+}
+
+.aboutPage-content__container2-heading p {
+  padding: 2rem;
+  font-size: 5rem;
+  font-weight: 600;
+  text-align: center;
+  background-color: #ffd1b9;
+}
+
+.aboutPage-content__container2-para p {
+  background-color: #ffd1b9;
+  text-align: center;
+  padding: 1rem 10rem;
+  font-size: 1.25rem;
+}
+
+.aboutPage-content__container2-para p:last-child{
+    font-weight: 500;
+}
+
 @media (max-width: 900px) {
   .aboutPage-content__container {
     flex-direction: column;
+  }
+
+  .aboutPage-content__container2-heading p{
+    font-size: 3rem;
+  }
+  .aboutPage-content__container2-para p {
+    padding: 1rem 1rem;
   }
 }
