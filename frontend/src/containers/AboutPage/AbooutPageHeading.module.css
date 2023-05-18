@@ -1,0 +1,16 @@
+.about__page-heading {
+  padding-top: 2rem;
+  font-size: 5rem;
+  font-weight: 300;
+  text-align: center;
+}
+
+.about__page-heading span {
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+   .about__page-heading{
+    font-size: 3rem;
+   }
+}

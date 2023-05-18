@@ -34,7 +34,15 @@ nav {
   font-family: var(--font-base);
   text-transform: uppercase;
 }
-
+.nav__links-link a {
+  text-decoration: none;
+  color: var(--color-text);
+}
+.nav__links-link a.active,
+.nav__links-link a:hover {
+  color: var(--color-text);
+  font-weight: bold;
+}
 .nav__mobile {
   display: none;
 }
@@ -78,7 +86,7 @@ nav {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 0 1rem
+  gap: 0 1rem;
 }
 
 @media (max-width: 900px) {

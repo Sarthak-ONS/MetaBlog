@@ -67,6 +67,7 @@ const Trending = () => {
         {DUMMY_BLOG.map(
           ({ index, authorName, title, readTimeText, dateText }) => (
             <BlogCard
+            key={index}
               index={index}
               authorName={authorName}
               title={title}

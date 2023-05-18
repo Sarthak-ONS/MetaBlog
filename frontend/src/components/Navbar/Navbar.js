@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import classes from "./Navbar.module.css";
 import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
+import { NavLink } from "react-router-dom";
 
 import CustomButton from "../Button/CustomButton";
 
@@ -25,10 +26,46 @@ const Navbar = () => {
 
         <div className={classes["nav__links-container"]}>
           <ul className={classes["nav__links"]}>
-            <li className={classes["nav__links-link"]}>Home</li>
-            <li className={classes["nav__links-link"]}>Blog</li>
-            <li className={classes["nav__links-link"]}>About</li>
-            <li className={classes["nav__links-link"]}>Contact</li>
+            <li className={classes["nav__links-link"]}>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive ? classes.active : undefined
+                }
+              >
+                Home
+              </NavLink>
+            </li>
+            <li className={classes["nav__links-link"]}>
+              <NavLink
+                to="/blog"
+                className={({ isActive }) =>
+                  isActive ? classes.active : undefined
+                }
+              >
+                Blog
+              </NavLink>
+            </li>
+            <li className={classes["nav__links-link"]}>
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  isActive ? classes.active : undefined
+                }
+              >
+                Our Story
+              </NavLink>
+            </li>
+            <li className={classes["nav__links-link"]}>
+              <NavLink
+                to="/contact"
+                className={({ isActive }) =>
+                  isActive ? classes.active : undefined
+                }
+              >
+                Contact
+              </NavLink>
+            </li>
           </ul>
         </div>
         <div className={classes["nav__button"]}>
