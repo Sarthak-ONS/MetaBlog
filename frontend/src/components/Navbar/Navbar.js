@@ -27,7 +27,7 @@ const Navbar = () => {
           <ul className={classes["nav__links"]}>
             <li className={classes["nav__links-link"]}>Home</li>
             <li className={classes["nav__links-link"]}>Blog</li>
-            <li className={classes["nav__links-link"]}>Pages</li>
+            <li className={classes["nav__links-link"]}>About</li>
             <li className={classes["nav__links-link"]}>Contact</li>
           </ul>
         </div>

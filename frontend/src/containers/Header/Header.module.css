@@ -22,6 +22,7 @@
 }
 .header__text p {
   font-size: 5rem;
+  line-height: 5.5rem;
 }
 
 .header__text div {

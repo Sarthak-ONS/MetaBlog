@@ -1,0 +1,29 @@
+.trending {
+  margin: 2rem;
+  padding: 2rem;
+  /* height: 70vh; */
+  background-color: #e8ecf0;
+}
+
+.trending > p {
+  text-align: left;
+  font-family: var(--font-base);
+  font-weight: 600;
+  font-size: 2rem;
+  padding: 0 1rem;
+  background-color: transparent;
+  color: var(--color-text);
+}
+
+.trending p span {
+  background-color: transparent;
+  vertical-align: middle;
+  padding: 0 0.5rem;
+}
+
+.blog-grid {
+  background-color: #e8ecf0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1rem;
+}
