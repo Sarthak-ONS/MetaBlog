@@ -1,0 +1,60 @@
+.main-header {
+  background: url("https://images.pexels.com/photos/4429555/pexels-photo-4429555.jpeg?cs=tinysrgb&w=1260");
+  height: 80vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-origin: border-box;
+  border-radius: 20px;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.main-header p {
+  background-color: transparent;
+  color: white;
+}
+.main-header h5,
+.main-header h3 {
+  background-color: transparent;
+  color: white;
+}
+
+.main-header__featured {
+  color: white;
+  font-weight: 500;
+  font-size: 2rem;
+  text-transform: capitalize;
+  padding-left: 1rem;
+}
+.main-header__title {
+  font-size: 3.5rem;
+  line-height: 3.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+}
+
+.main-header__content {
+  font-size: 1.1rem;
+  padding-left: 1rem;
+  max-width: 50%;
+  padding-top: 1rem;
+}
+
+@media (max-width: 650px) {
+  .main-header__featured {
+    font-size: 1rem;
+  }
+  .main-header__title {
+    font-size: 2rem;
+    line-height: 2rem;
+  }
+  .main-header__content {
+    max-width: 60%;
+    font-size: 0.90rem;
+  }
+}

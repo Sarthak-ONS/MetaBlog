@@ -44,7 +44,7 @@ const AboutPageContent = () => {
         </div>
         <div className={classes["aboutPage-content__container2-para"]}>
           <p>
-            Anyone can write on Medium. Thought-leaders, journalists, experts,
+            Anyone can write on MetaBlogs. Thought-leaders, journalists, experts,
             and individuals with unique perspectives share their thinking here.
             You’ll find pieces by independent writers from around the globe,
             stories we feature and leading authors, and smart takes on our own
