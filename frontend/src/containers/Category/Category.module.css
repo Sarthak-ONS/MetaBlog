@@ -1,0 +1,21 @@
+.category {
+  background-image: url("../../assets/radiant-gradient.svg");
+  height: 100vh;
+  background-size: cover;
+}
+
+.category > p {
+  text-align: center;
+  font-family: var(--font-base);
+  font-weight: bold;
+  font-size: 4rem;
+  padding: 0 1rem;
+  background-color: transparent;
+  color: var(--color-text);
+}
+
+.category p span {
+  background-color: transparent;
+  vertical-align: middle;
+  padding: 0 0.5rem;
+}

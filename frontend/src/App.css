@@ -4,8 +4,8 @@
   --font-base: "Poppins", sans-serif;
   --color-bg: #040c18;
   --color-text: #ffffff;
-
   --background-gradient: rgba(9, 29, 85, 1);
+  --gradient-text: linear-gradient(89.97deg, #ae67fa 1.84%, #f49867 102.67%);
 }
 
 * {
@@ -17,4 +17,11 @@
 
 ul {
   list-style: none;
+}
+
+.gradient__text {
+  background: var(--gradient-text);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

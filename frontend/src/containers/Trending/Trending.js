@@ -8,7 +8,7 @@ const DUMMY_BLOG = [
   {
     index: 1,
     authorName: "Sarthak Agarwal",
-    title: "How to win friends and influence people",
+    title: "How to win friends",
     dateText: "May 5",
     readTimeText: "5 min read",
     imageUrl:
@@ -30,7 +30,7 @@ const DUMMY_BLOG = [
     dateText: "May 9",
     readTimeText: "2 min read",
     imageUrl:
-      "https://images.pexels.com/photos/11178057/pexels-photo-11178057.jpeg",
+      "https://images.pexels.com/photos/2156/sky-earth-space-working.jpg",
   },
   {
     index: 4,
@@ -41,24 +41,24 @@ const DUMMY_BLOG = [
     imageUrl:
       "https://images.pexels.com/photos/3862132/pexels-photo-3862132.jpeg",
   },
-  {
-    index: 5,
-    authorName: "Prajwal Choudhary",
-    title: "Notes from the underground",
-    dateText: "May 11",
-    readTimeText: "2 min read",
-    imageUrl:
-      "https://images.pexels.com/photos/3970330/pexels-photo-3970330.jpeg",
-  },
-  {
-    index: 6,
-    authorName: "Sarvesh Algoia",
-    title: "Zero to One",
-    dateText: "May 9",
-    readTimeText: "10 min read",
-    imageUrl:
-      "https://images.pexels.com/photos/2156/sky-earth-space-working.jpg",
-  },
+  // {
+  //   index: 5,
+  //   authorName: "Prajwal Choudhary",
+  //   title: "Notes from the underground",
+  //   dateText: "May 11",
+  //   readTimeText: "2 min read",
+  //   imageUrl:
+  //     "https://images.pexels.com/photos/3970330/pexels-photo-3970330.jpeg",
+  // },
+  // {
+  //   index: 6,
+  //   authorName: "Sarvesh Algoia",
+  //   title: "Zero to One",
+  //   dateText: "May 9",
+  //   readTimeText: "10 min read",
+  //   imageUrl:
+  //     "https://images.pexels.com/photos/2156/sky-earth-space-working.jpg",
+  // },
 ];
 
 const Trending = () => {
@@ -68,14 +68,27 @@ const Trending = () => {
         <span>
           <AiOutlineBranches
             style={{ backgroundColor: "transparent" }}
-            color="#040c18"
+            color="#fff"
           />
         </span>
-        Trending Blog Posts
+        Trending Blog
       </p>
       <br></br>
       <br></br>
       <div className={classes["blog-grid"]}>
+        {DUMMY_BLOG.map(
+          ({ index, authorName, title, readTimeText, dateText, imageUrl }) => (
+            <BlogCard
+              key={index}
+              imageUrl={imageUrl}
+              index={index}
+              authorName={authorName}
+              title={title}
+              dateText={dateText}
+              readTimeText={readTimeText}
+            ></BlogCard>
+          )
+        )}
         {DUMMY_BLOG.map(
           ({ index, authorName, title, readTimeText, dateText, imageUrl }) => (
             <BlogCard

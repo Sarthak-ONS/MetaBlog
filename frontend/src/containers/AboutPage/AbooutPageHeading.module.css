@@ -3,6 +3,8 @@
   font-size: 5rem;
   font-weight: 300;
   text-align: center;
+  color: white;
+  margin-top: 4rem;
 }
 
 .about__page-heading span {
@@ -10,7 +12,7 @@
 }
 
 @media (max-width: 900px) {
-   .about__page-heading{
+  .about__page-heading {
     font-size: 3rem;
-   }
+  }
 }

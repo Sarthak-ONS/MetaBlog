@@ -1,19 +1,18 @@
 .header {
   /* margin: 2rem; */
-  margin-top: 8rem;
+  margin-top: 5rem;
   padding: 2rem;
   display: flex;
   gap: 1rem;
-  height: 80vh;
+  height: 90vh;
   flex-wrap: wrap;
   justify-content: space-around;
-  background-image: var(--background-gradient);
 }
 
 .header__animation-container {
   width: 40%;
   display: flex;
-  scale: 0.5;
+  scale: 0.8;
   align-items: center;
   background: transparent;
 }
@@ -22,18 +21,46 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: var(--color-text);
   background: transparent;
 }
+
+.gradient__text {
+  background: var(--gradient-text);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 .header__text p {
-  background: transparent;
   font-size: 5rem;
   line-height: 5.5rem;
+
+  background: var(--gradient-text);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .header__text div {
-  background: transparent;
   font-size: 1.5rem;
+
+  background: var(--gradient-text);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header__button {
+  background-color: orangered;
+  padding: 0.7rem 3rem;
+}
+
+.header__text button {
+  margin-top: 1rem;
+}
+
+.header__button {
+  color: white;
+  background-color: orangered;
 }
 
 @media (max-width: 900px) {

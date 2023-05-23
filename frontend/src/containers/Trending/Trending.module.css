@@ -3,10 +3,10 @@
 }
 
 .trending > p {
-  text-align: left;
+  text-align: center;
   font-family: var(--font-base);
-  font-weight: 600;
-  font-size: 2rem;
+  font-weight: bold;
+  font-size: 4rem;
   padding: 0 1rem;
   background-color: transparent;
   color: var(--color-text);
@@ -19,9 +19,12 @@
 }
 
 .blog-grid {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: 2rem;
   grid-area: auto;
 }
 
@@ -30,8 +33,8 @@
     grid-template-columns: repeat(1, 1fr);
   }
 
-  .trending > p {
+  /* .trending > p {
     font-size: 1.5rem;
     text-align: center;
-  }
+  } */
 }
