@@ -3,8 +3,13 @@ nav {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 2rem 5rem;
-  padding: 0rem 2rem;
+  height: fit-content;
+  margin-top: 0;
+  padding: 2rem 2rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 10;
 }
 
 .nav__brand {
@@ -45,6 +50,10 @@ nav {
 }
 .nav__mobile {
   display: none;
+  margin: 2rem 1rem;
+  padding: 0rem 1rem;
+  justify-content: space-between;
+  height: fit-content;
 }
 
 .menu-icon__wrapper {
@@ -57,6 +66,8 @@ nav {
   display: flex;
   align-items: flex-end;
   background-color: #fff;
+  position: fixed;
+  scroll-behavior: auto;
 }
 
 .navbar-menu_container-links {
@@ -68,7 +79,7 @@ nav {
   padding: 1rem;
   background-color: var(--color-bg);
   margin: 1rem;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 .navbar-menu_container-link {
@@ -94,9 +105,6 @@ nav {
     display: none;
   }
   .nav__mobile {
-    margin: 2rem 1rem;
-    padding: 0rem 1rem;
     display: flex;
-    justify-content: space-between;
   }
 }

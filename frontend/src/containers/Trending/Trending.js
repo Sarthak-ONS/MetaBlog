@@ -11,6 +11,8 @@ const DUMMY_BLOG = [
     title: "How to win friends and influence people",
     dateText: "May 5",
     readTimeText: "5 min read",
+    imageUrl:
+      "https://images.pexels.com/photos/7562114/pexels-photo-7562114.jpeg",
   },
   {
     index: 2,
@@ -18,6 +20,8 @@ const DUMMY_BLOG = [
     title: "Attitude is Everything",
     dateText: "May 9",
     readTimeText: "2 min read",
+    imageUrl:
+      "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg",
   },
   {
     index: 3,
@@ -25,6 +29,8 @@ const DUMMY_BLOG = [
     title: "Sophia - A disturb girl",
     dateText: "May 9",
     readTimeText: "2 min read",
+    imageUrl:
+      "https://images.pexels.com/photos/11178057/pexels-photo-11178057.jpeg",
   },
   {
     index: 4,
@@ -32,6 +38,8 @@ const DUMMY_BLOG = [
     title: "Licking Ass - Ultimate Guide",
     dateText: "May 9",
     readTimeText: "2 min read",
+    imageUrl:
+      "https://images.pexels.com/photos/3862132/pexels-photo-3862132.jpeg",
   },
   {
     index: 5,
@@ -39,6 +47,8 @@ const DUMMY_BLOG = [
     title: "Notes from the underground",
     dateText: "May 11",
     readTimeText: "2 min read",
+    imageUrl:
+      "https://images.pexels.com/photos/3970330/pexels-photo-3970330.jpeg",
   },
   {
     index: 6,
@@ -46,6 +56,8 @@ const DUMMY_BLOG = [
     title: "Zero to One",
     dateText: "May 9",
     readTimeText: "10 min read",
+    imageUrl:
+      "https://images.pexels.com/photos/2156/sky-earth-space-working.jpg",
   },
 ];
 
@@ -65,9 +77,10 @@ const Trending = () => {
       <br></br>
       <div className={classes["blog-grid"]}>
         {DUMMY_BLOG.map(
-          ({ index, authorName, title, readTimeText, dateText }) => (
+          ({ index, authorName, title, readTimeText, dateText, imageUrl }) => (
             <BlogCard
-            key={index}
+              key={index}
+              imageUrl={imageUrl}
               index={index}
               authorName={authorName}
               title={title}

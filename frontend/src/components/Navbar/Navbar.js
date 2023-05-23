@@ -8,7 +8,7 @@ import CustomButton from "../Button/CustomButton";
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
 
-  const menuIconColor = "#040c18";
+  const menuIconColor = "#fff";
 
   const menuOpenClickHandler = () => {
     setToggleMenu(true);
@@ -114,7 +114,7 @@ const Navbar = () => {
           </p>
           <p className={classes["navbar-menu_container-link"]}>
             <NavLink
-             onClick={menuCloseClickHandler}
+              onClick={menuCloseClickHandler}
               to="/blog"
               className={({ isActive }) =>
                 isActive ? classes.active : undefined
@@ -125,7 +125,7 @@ const Navbar = () => {
           </p>
           <p className={classes["navbar-menu_container-link"]}>
             <NavLink
-             onClick={menuCloseClickHandler}
+              onClick={menuCloseClickHandler}
               to="/about"
               className={({ isActive }) =>
                 isActive ? classes.active : undefined
@@ -136,7 +136,7 @@ const Navbar = () => {
           </p>
           <p className={classes["navbar-menu_container-link"]}>
             <NavLink
-             onClick={menuCloseClickHandler}
+              onClick={menuCloseClickHandler}
               to="/contact"
               className={({ isActive }) =>
                 isActive ? classes.active : undefined

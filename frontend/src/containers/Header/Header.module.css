@@ -1,31 +1,38 @@
 .header {
-  margin: 2rem;
+  /* margin: 2rem; */
+  margin-top: 8rem;
   padding: 2rem;
   display: flex;
   gap: 1rem;
   height: 80vh;
   flex-wrap: wrap;
   justify-content: space-around;
+  background-image: var(--background-gradient);
 }
 
 .header__animation-container {
   width: 40%;
   display: flex;
+  scale: 0.5;
   align-items: center;
+  background: transparent;
 }
 
 .header__text {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   justify-content: center;
+  color: var(--color-text);
+  background: transparent;
 }
 .header__text p {
+  background: transparent;
   font-size: 5rem;
   line-height: 5.5rem;
 }
 
 .header__text div {
+  background: transparent;
   font-size: 1.5rem;
 }
 

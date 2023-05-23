@@ -2,8 +2,10 @@
 
 :root {
   --font-base: "Poppins", sans-serif;
-  --color-text: #040c18;
-  --color-bg: #ffffff;
+  --color-bg: #040c18;
+  --color-text: #ffffff;
+
+  --background-gradient: rgba(9, 29, 85, 1);
 }
 
 * {

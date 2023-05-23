@@ -1,8 +1,5 @@
 .trending {
-  margin: 2rem;
   padding: 2rem;
-  /* height: 70vh; */
-  background-color: #e8ecf0;
 }
 
 .trending > p {
@@ -22,8 +19,19 @@
 }
 
 .blog-grid {
-  background-color: #e8ecf0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  grid-area: auto;
+}
+
+@media (max-width: 550px) {
+  .blog-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .trending > p {
+    font-size: 1.5rem;
+    text-align: center;
+  }
 }

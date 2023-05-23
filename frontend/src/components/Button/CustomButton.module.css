@@ -3,8 +3,8 @@ button {
   border: none;
   font-size: 12px;
   border-radius: 5px;
-  padding: 0.50rem 1rem;
-  color: white;
+  padding: 0.5rem 1rem;
+  color: var(--color-bg);
   font-family: var(--font-base);
   font-weight: 600;
   cursor: pointer;
