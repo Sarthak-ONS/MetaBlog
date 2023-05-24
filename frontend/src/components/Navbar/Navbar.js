@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import classes from "./Navbar.module.css";
 import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import CustomButton from "../Button/CustomButton";
 
 const Navbar = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,6 +35,12 @@ const Navbar = () => {
   };
   const menuCloseClickHandler = () => {
     setToggleMenu(false);
+  };
+
+  const loginClickHandler = () => {
+    console.log("Redirecting to login Paage");
+
+    return navigate("/auth/login");
   };
 
   const animateNavClass = `${
@@ -93,7 +101,7 @@ const Navbar = () => {
               </ul>
             </div>
             <div className={classes["nav__button"]}>
-              <CustomButton text={"Login"} onClick={() => {}} />
+              <CustomButton text={"Login"} onClick={loginClickHandler} />
               <CustomButton
                 color={"var(--color-text)"}
                 text={"Sign up"}

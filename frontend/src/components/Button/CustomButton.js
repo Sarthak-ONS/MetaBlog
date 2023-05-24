@@ -8,6 +8,7 @@ const CustomButton = ({ text, color, onClick }) => {
 
   return (
     <button
+      className={classes["action__button"]}
       style={{
         backgroundColor: color !== "var(--color-text)" ? "#040c18" : "#fff",
         color: color === "var(--color-text)" ? "#040c18" : "#fff",

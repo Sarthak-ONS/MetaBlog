@@ -9,3 +9,7 @@ button {
   font-weight: 600;
   cursor: pointer;
 }
+
+.action__button {
+  background-color: var(--gradient__text);
+}

@@ -30,19 +30,19 @@
   font-weight: 500;
   font-size: 2rem;
   text-transform: capitalize;
-  padding-left: 1rem;
+  padding-left: 3rem;
 }
 .main-header__title {
   font-size: 3.5rem;
   line-height: 3.5rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  padding-left: 1rem;
+  padding-left: 3rem;
 }
 
 .main-header__content {
   font-size: 1.1rem;
-  padding-left: 1rem;
+  padding-left: 3rem;
   max-width: 50%;
   padding-top: 1rem;
 }
