@@ -47,7 +47,7 @@ const CategoriesGrid = () => {
   return (
     <div className={classes["category__grid"]}>
       {categories.map((item) => (
-        <CategoryCard name={item.name}></CategoryCard>
+        <CategoryCard key={item.index} name={item.name}></CategoryCard>
       ))}
     </div>
   );

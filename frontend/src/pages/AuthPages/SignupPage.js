@@ -3,7 +3,7 @@ import classes from "./LoginPage.module.css";
 
 const SignupPage = () => {
   return (
-    <>
+    <div className={classes["login__container"]}>
       <div className={classes["login-box"]}>
         <p>Create a Account</p>
         <form>
@@ -34,7 +34,7 @@ const SignupPage = () => {
           </NavLink>
         </p> */}
       </div>
-    </>
+    </div>
   );
 };
 

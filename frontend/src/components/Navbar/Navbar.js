@@ -172,12 +172,12 @@ const Navbar = () => {
               <p className={classes["navbar-menu_container-link"]}>
                 <NavLink
                   onClick={menuCloseClickHandler}
-                  to="/contact"
+                  to="/creators"
                   className={({ isActive }) =>
                     isActive ? classes.active : undefined
                   }
                 >
-                  Contact
+                  Write
                 </NavLink>
               </p>
             </div>

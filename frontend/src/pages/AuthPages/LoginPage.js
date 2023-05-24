@@ -15,7 +15,7 @@ const LoginPage = () => {
   };
 
   return (
-    <>
+    <div className={classes["login__container"]}>
       <div className={classes["login-box"]}>
         <p>Login</p>
         <form>
@@ -45,7 +45,7 @@ const LoginPage = () => {
           </NavLink>
         </p>
       </div>
-    </>
+    </div>
   );
 };
 

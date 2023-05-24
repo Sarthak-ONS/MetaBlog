@@ -1,3 +1,7 @@
+.login__container {
+  height: 100vh;
+}
+
 .login-box {
   position: absolute;
   top: 50%;

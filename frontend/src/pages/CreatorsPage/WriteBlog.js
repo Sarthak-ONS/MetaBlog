@@ -4,6 +4,10 @@ import classes from "./WriteBlogPage.module.css";
 import EditorComponent from "../../components/Editor/EditorComponent";
 import { AiOutlineEdit } from "react-icons/ai";
 const WriteBlog = () => {
+  const publishClickHandler = (value) => {
+    console.log("This is from main");
+  };
+
   return (
     <>
       <div className={classes["editor__header"]}>
@@ -12,10 +16,10 @@ const WriteBlog = () => {
           Write a new Blog
           <AiOutlineEdit color="white" />
         </h1>
-        <button>Publish</button>
+        <button onClick={publishClickHandler}>Publish</button>
       </div>
       <br></br>
-      <EditorComponent></EditorComponent>
+      <EditorComponent onClick={publishClickHandler}></EditorComponent>
     </>
   );
 };

@@ -3,10 +3,11 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import classes from "./EditorComponent.module.css";
 
-const EditorComponent = () => {
+const EditorComponent = (props) => {
   const [value, setValue] = useState("");
 
-  const handleContentChange = (value) => {
+  const handleContentChange = (vv) => {
+    console.log(value);
     setValue(value);
   };
 
@@ -47,6 +48,7 @@ const EditorComponent = () => {
       value={value}
       onChange={handleContentChange}
       modules={modules}
+      placeholder="Start writing your blog."
       formats={formats}
       styles={styles}
     ></ReactQuill>
