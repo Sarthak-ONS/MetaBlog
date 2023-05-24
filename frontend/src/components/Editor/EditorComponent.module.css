@@ -1,0 +1,14 @@
+.quill {
+  margin: auto 4rem;
+  background-color: transparent;
+  border: 2px solid white;
+  height: 100vh;
+  overflow: hidden;
+
+  color: white;
+
+  font-size: 2rem;
+  outline: none;
+
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}

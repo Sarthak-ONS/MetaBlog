@@ -10,6 +10,7 @@ import BlogPage from "./pages/BlogPage";
 import LoginPage from "./pages/AuthPages/LoginPage";
 import SignupPage from "./pages/AuthPages/SignupPage";
 import CreatorPage from "./pages/CreatorsPage/CreatorPage";
+import WriteBlog from "./pages/CreatorsPage/WriteBlog";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "blog",
         element: <BlogPage />,
+      },
+      {
+        path: "blog/new/:id",
+        element: <WriteBlog />,
       },
       {
         path: "creators",

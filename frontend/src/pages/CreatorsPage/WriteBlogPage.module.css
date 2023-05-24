@@ -1,0 +1,30 @@
+.editor__header {
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+  padding-top: 5rem;
+
+  justify-content: space-between;
+}
+
+.editor__header button {
+  background-color: orangered;
+  color: white;
+  margin-right: 1rem;
+}
+
+.gradient__text {
+  background: var(--gradient-text);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.gradient__text span {
+  vertical-align: middle;
+  padding-left: 1rem;
+}

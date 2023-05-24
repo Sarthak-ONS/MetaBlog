@@ -5,20 +5,16 @@
   color: #fff;
   align-items: center;
 }
+
 .aboutPage-content__container-para {
-  flex: 0.5;
+  flex: 1;
   padding: 1rem;
   text-align: justify;
   font-size: 1.1rem;
   font-weight: 300;
 }
-.aboutPage-content__container-video {
-  flex: 0.5;
-}
-
-aboutPage-content__container-video video {
-  border-radius: 10px;
-  overflow: hidden;
+.aboutPage-content__container-animation {
+  flex: 1;
 }
 
 .aboutPage-content__container2 {
@@ -56,5 +52,8 @@ aboutPage-content__container-video video {
   }
   .aboutPage-content__container2-para p {
     padding: 1rem 1rem;
+  }
+
+  .aboutPage-content__container-animation {
   }
 }

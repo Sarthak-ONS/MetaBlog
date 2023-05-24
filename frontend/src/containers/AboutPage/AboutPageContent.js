@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "./AboutPageContent.module.css";
-import globe from "../../assets/globe.mp4";
+import GlobeAnimation from "../../assets/globe2.json";
+import Lottie from "lottie-react";
 
 const AboutPageContent = () => {
   return (
@@ -23,17 +24,13 @@ const AboutPageContent = () => {
           building a trusted and vibrant ecosystem fueled by important ideas and
           the people who think about them.
         </p>
-        <video
-          className={classes["aboutPage-content__container-video"]}
-          autoPlay
-          muted
-          loop
-          width={450}
-          height={450}
-        >
-          <source src={globe} type="video/mp4"></source>
-          Your browser doesn't support video tag.
-        </video>
+        <div className={classes["aboutPage-content__container-animation"]}>
+          <Lottie
+            className={classes[".aboutPage-content__container-video"]}
+            animationData={GlobeAnimation}
+            loop={true}
+          ></Lottie>
+        </div>
       </div>
       <div className={classes["aboutPage-content__container2"]}>
         <div className={classes["aboutPage-content__container2-heading"]}>
@@ -44,11 +41,11 @@ const AboutPageContent = () => {
         </div>
         <div className={classes["aboutPage-content__container2-para"]}>
           <p>
-            Anyone can write on MetaBlogs. Thought-leaders, journalists, experts,
-            and individuals with unique perspectives share their thinking here.
-            You’ll find pieces by independent writers from around the globe,
-            stories we feature and leading authors, and smart takes on our own
-            suite of blogs and publications.
+            Anyone can write on MetaBlogs. Thought-leaders, journalists,
+            experts, and individuals with unique perspectives share their
+            thinking here. You’ll find pieces by independent writers from around
+            the globe, stories we feature and leading authors, and smart takes
+            on our own suite of blogs and publications.
           </p>
           <p>Read as much as you want.</p>
         </div>

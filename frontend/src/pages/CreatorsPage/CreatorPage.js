@@ -4,6 +4,7 @@ import classes from "./CreatorPage.module.css";
 import Lottie from "lottie-react";
 import BrainAnimation from "../../assets/brain.json";
 import FaqCard from "../../components/FaqCard/FaqCard";
+import { useNavigate } from "react-router-dom";
 
 const faqs = [
   {
@@ -29,6 +30,11 @@ const faqs = [
 ];
 
 const CreatorPage = () => {
+  const navigate = useNavigate();
+
+  const writingButtonClickHandler = () => {
+    navigate("/blog/new/123");
+  };
   return (
     <>
       <div className={classes["creators"]}>
@@ -43,7 +49,12 @@ const CreatorPage = () => {
               in a network<br></br> supported by millions of readers.
             </p>
             <span>
-              <button className={classes["button"]}>Start Writing</button>
+              <button
+                className={classes["button"]}
+                onClick={writingButtonClickHandler}
+              >
+                Start Writing
+              </button>
             </span>
           </div>
           <div
