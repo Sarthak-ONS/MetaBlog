@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./LoginPage.module.css";
 import { NavLink } from "react-router-dom";
 
+import Loader from "../../components/Loaders/Loader";
+
 const LoginPage = () => {
+  const [showLoader, setShowLoader] = useState(false);
+
+  const loginghandler = () => {
+    setShowLoader(true);
+    setTimeout(() => {
+      setShowLoader(false);
+    }, 2000);
+  };
+
   return (
     <>
       <div className={classes["login-box"]}>
@@ -16,17 +27,20 @@ const LoginPage = () => {
             <input required="" name="" type="password" />
             <label>Password</label>
           </div>
-          <a href="#">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            Submit
-          </a>
+          {showLoader && <Loader />}
+          {!showLoader && (
+            <button href="" onClick={loginghandler}>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              Submit
+            </button>
+          )}
         </form>
         <p>
           Don't have an account?{" "}
-          <NavLink to="auth/signup" className={classes["a2"]}>
+          <NavLink to="/auth/signup" className={classes["a2"]}>
             Sign up!
           </NavLink>
         </p>

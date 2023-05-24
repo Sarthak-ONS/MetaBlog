@@ -37,10 +37,10 @@ const Navbar = () => {
     setToggleMenu(false);
   };
 
-  const loginClickHandler = () => {
+  const loginClickHandler = (name) => {
     console.log("Redirecting to login Paage");
 
-    return navigate("/auth/login");
+    return navigate(`/auth/${name}`);
   };
 
   const animateNavClass = `${
@@ -75,7 +75,7 @@ const Navbar = () => {
                       isActive ? classes.active : undefined
                     }
                   >
-                    Blog
+                    Featured
                   </NavLink>
                 </li>
                 <li className={classes["nav__links-link"]}>
@@ -90,22 +90,25 @@ const Navbar = () => {
                 </li>
                 <li className={classes["nav__links-link"]}>
                   <NavLink
-                    to="/contact"
+                    to="/creators"
                     className={({ isActive }) =>
                       isActive ? classes.active : undefined
                     }
                   >
-                    Contact
+                    Write
                   </NavLink>
                 </li>
               </ul>
             </div>
             <div className={classes["nav__button"]}>
-              <CustomButton text={"Login"} onClick={loginClickHandler} />
+              <CustomButton
+                text={"Login"}
+                onClick={loginClickHandler.bind(null, "login")}
+              />
               <CustomButton
                 color={"var(--color-text)"}
                 text={"Sign up"}
-                onClick={() => {}}
+                onClick={loginClickHandler.bind(null, "signup")}
               />
             </div>
           </nav>

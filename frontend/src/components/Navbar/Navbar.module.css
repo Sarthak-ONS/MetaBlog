@@ -23,7 +23,14 @@ nav {
   top: 0;
   background-color: transparent;
   backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  mask: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 255) 0%,
+    rgba(255, 255, 255, 255) 25%,
+    rgba(255, 255, 255, 255) 50%,
+    rgba(255, 255, 255, 255) 100%
+  );
+  -webkit-backdrop-255ilter: blur(4px);
   /* border: 1px solid rgba(255, 255, 255, 0.18); */
 }
 

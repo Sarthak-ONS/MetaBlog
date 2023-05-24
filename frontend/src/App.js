@@ -7,7 +7,9 @@ import HomePage from "./pages/HomePage";
 import ErrorPage from "./pages/ErrorPage";
 import AboutPage from "./pages/AbooutPage";
 import BlogPage from "./pages/BlogPage";
-import LoginPage from "./pages/LoginPage";
+import LoginPage from "./pages/AuthPages/LoginPage";
+import SignupPage from "./pages/AuthPages/SignupPage";
+import CreatorPage from "./pages/CreatorsPage/CreatorPage";
 
 const router = createBrowserRouter([
   {
@@ -28,8 +30,16 @@ const router = createBrowserRouter([
         element: <BlogPage />,
       },
       {
+        path: "creators",
+        element: <CreatorPage />,
+      },
+      {
         path: "auth/login",
         element: <LoginPage />,
+      },
+      {
+        path: "auth/signup",
+        element: <SignupPage />,
       },
     ],
   },

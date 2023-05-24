@@ -1,0 +1,83 @@
+.creators {
+  background: linear-gradient(360deg, rgba(0, 0, 0, 0.8), rgb(148, 46, 46, 0.1)),
+    url("../../assets/radiant-gradient2.svg");
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: var(--color-text);
+}
+
+.creators__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  background-color: transparent;
+  height: 100%;
+}
+
+.creators__header-content {
+  flex: 0.75;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.creators__header-content h5 {
+  background-color: transparent;
+  font-weight: 400;
+  padding-top: 1.5rem;
+  font-size: 1rem;
+}
+.creators__header-content h2 {
+  background-color: transparent;
+  line-height: 6rem;
+  padding-top: 1.5rem;
+  font-size: 5rem;
+  font-weight: 600;
+}
+.creators__header-content p {
+  background-color: transparent;
+  padding-top: 1.5rem;
+}
+
+.creators__header-animation {
+  color: transparent;
+  background-color: transparent;
+  height: 50%;
+}
+
+.creators__header-animation svg {
+  background-color: transparent;
+}
+
+span {
+  background-color: transparent;
+}
+
+.button {
+  border: 2px solid transparent;
+  color: white;
+  font-size: 1rem;
+  margin: 1rem 0;
+  padding: 0.5rem 2rem;
+  background-color: orangered;
+  transition: 0.3s ease-in-out;
+  border-radius: 30px;
+}
+
+.button:hover {
+  background-color: orangered;
+}
+
+.creator__content-faqs {
+  padding: 2rem;
+}
+
+.creator__content-faqs h1 {
+  text-align: left;
+  font-weight: 600;
+  font-size: 3rem;
+}
