@@ -12,6 +12,7 @@
   width: 50px;
   gap: 3px;
   height: 50px;
+  background-color: transparent;
 }
 
 .loading span {

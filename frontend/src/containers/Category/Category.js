@@ -4,26 +4,11 @@ import classes from "./Category.module.css";
 import CategoryCard from "../../components/CategoryCard/CategoryCard";
 
 import { AiOutlineBranches } from "react-icons/ai";
-
-const categories = [
-  { index: 1, name: "Food" },
-  { index: 2, name: "Travel" },
-  { index: 3, name: "Health and fitness" },
-  { index: 4, name: "Lifestyle" },
-  { index: 5, name: "Photography" },
-  { index: 6, name: "Business" },
-  { index: 7, name: "Movie" },
-  { index: 8, name: "Political" },
-  { index: 9, name: "Religion" },
-  { index: 10, name: "Book writing" },
-  { index: 11, name: "Web Development" },
-  { index: 12, name: "App Development" },
-  { index: 13, name: "Flutter" },
-  { index: 14, name: "ReactJS" },
-  { index: 15, name: "NodeJS" },
-];
+import { useLoaderData } from "react-router-dom";
 
 const Category = () => {
+  const data = useLoaderData();
+
   return (
     <>
       <div className={classes["category"]}>
@@ -44,13 +29,28 @@ const Category = () => {
 };
 
 const CategoriesGrid = () => {
+  const data = useLoaderData();
+
   return (
     <div className={classes["category__grid"]}>
-      {categories.map((item) => (
+      {data.map((item) => (
         <CategoryCard key={item.index} name={item.name}></CategoryCard>
       ))}
     </div>
   );
 };
+
+export async function loader() {
+  const response = await fetch("http://localhost:4000/blogs/categories");
+
+  if (!response.ok) {
+    //.,,,,,
+  } else {
+    const resData = await response.json();
+
+    console.log(resData);
+    return resData.categories;
+  }
+}
 
 export default Category;

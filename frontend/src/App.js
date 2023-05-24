@@ -12,6 +12,8 @@ import SignupPage from "./pages/AuthPages/SignupPage";
 import CreatorPage from "./pages/CreatorsPage/CreatorPage";
 import WriteBlog from "./pages/CreatorsPage/WriteBlog";
 
+import { loader as categoryLoader } from "./containers/Category/Category";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,6 +23,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <HomePage />,
+        loader: categoryLoader,
       },
       {
         path: "about",

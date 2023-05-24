@@ -17,7 +17,7 @@ const LoginPage = () => {
   return (
     <div className={classes["login__container"]}>
       <div className={classes["login-box"]}>
-        <p>Login</p>
+        <p>Login to MetaBlog</p>
         <form>
           <div className={classes["user-box"]}>
             <input required="" name="" type="text" />
@@ -29,11 +29,11 @@ const LoginPage = () => {
           </div>
           {showLoader && <Loader />}
           {!showLoader && (
-            <button href="" onClick={loginghandler}>
+            <button type="button" onClick={loginghandler}>
+              {/* <span></span>
               <span></span>
               <span></span>
-              <span></span>
-              <span></span>
+              <span></span> */}
               Submit
             </button>
           )}

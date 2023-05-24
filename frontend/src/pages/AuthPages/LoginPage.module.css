@@ -1,5 +1,6 @@
 .login__container {
   height: 100vh;
+  --login-background-Color: #161b22;
 }
 
 .login-box {
@@ -10,11 +11,9 @@
   padding: 40px;
   margin: 20px auto;
   transform: translate(-50%, -55%);
-  background: rgba(0, 0, 0, 0.9);
   box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(156, 125, 125, 0.6);
   border-radius: 10px;
-  background-color: transparent;
+  background-color: var(--login-background-Color);
 }
 
 .login-box p:first-child {
@@ -23,36 +22,35 @@
   color: #fff;
   text-align: center;
   font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: 400;
   letter-spacing: 1px;
+  background-color: var(--login-background-Color);
 }
 
 .login-box .user-box {
   position: relative;
+  background: var(--login-background-Color);
 }
 
 .login-box .user-box input {
   width: 100%;
-  padding: 10px 0;
-  font-size: 16px;
+  padding: 8px 10px;
+  font-size: 1rem;
   color: #fff;
   margin-bottom: 30px;
   border: none;
-  border-bottom: 1px solid #fff;
+  border: 0.5px solid #3d3b3b;
+  border-radius: 10px;
   outline: none;
-  background: transparent;
+  background-color: #0d1117;
 }
 
 .login-box .user-box label {
   position: absolute;
-  top: 0;
-  left: 0;
-  padding: 10px 0;
   font-size: 16px;
   color: #fff;
-  pointer-events: none;
-  transition: 0.5s;
   background-color: transparent;
+  padding-bottom: 1.25rem;
 }
 
 .login-box .user-box input:focus ~ label,
@@ -63,22 +61,22 @@
   font-size: 12px;
 }
 
+.login-box form {
+  background-color: var(--login-background-Color);
+}
+
 .login-box form button {
   position: relative;
-  display: inline-block;
-  padding: 10px 20px;
-  font-weight: 600;
+  padding: 5px 20px;
+  font-weight: 400;
   color: #fff;
   font-size: 16px;
   text-decoration: none;
-  text-transform: uppercase;
   overflow: hidden;
   transition: 0.5s;
-  /* margin-top: 40px; */
-  letter-spacing: 3px;
-  background-color: transparent;
-  vertical-align: middle;
-  margin-bottom: 8px;
+  background-color: orangered;
+  /* vertical-align: middle; */
+  margin-bottom: 1rem;
 }
 
 .login-box button:hover {
@@ -87,10 +85,10 @@
   border-radius: 5px;
 }
 
-.login-box button span {
+/* .login-box button span {
   position: absolute;
   display: block;
-}
+} */
 
 .login-box button span:nth-child(1) {
   top: 0;
@@ -178,15 +176,16 @@
 .login-box p:last-child {
   color: #aaa;
   font-size: 14px;
+  background-color: var(--login-background-Color);
 }
 
 .login-box a.a2 {
   color: #fff;
+  background: var(--login-background-Color);
   text-decoration: none;
 }
 
 .login-box a.a2:hover {
-  background: transparent;
   color: #aaa;
   border-radius: 5px;
 }
