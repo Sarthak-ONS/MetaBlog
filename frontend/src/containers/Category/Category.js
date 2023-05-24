@@ -1,9 +1,11 @@
 import React from "react";
 import classes from "./Category.module.css";
 
+import CategoryCard from "../../components/CategoryCard/CategoryCard";
+
 import { AiOutlineBranches } from "react-icons/ai";
 
-const category = [
+const categories = [
   { index: 1, name: "Food" },
   { index: 2, name: "Travel" },
   { index: 3, name: "Health and fitness" },
@@ -13,7 +15,7 @@ const category = [
   { index: 7, name: "Movie" },
   { index: 8, name: "Political" },
   { index: 9, name: "Religion" },
-  { index: 10, name: "Book and writing" },
+  { index: 10, name: "Book writing" },
   { index: 11, name: "Web Development" },
   { index: 12, name: "App Development" },
   { index: 13, name: "Flutter" },
@@ -23,17 +25,30 @@ const category = [
 
 const Category = () => {
   return (
-    <div className={classes["category"]}>
-      <p>
-        <span>
-          <AiOutlineBranches
-            style={{ backgroundColor: "transparent" }}
-            color="#fff"
-          />
-        </span>
-        What are you looking for?
-      </p>
-      {/* This is a list of cards for Category */}
+    <>
+      <div className={classes["category"]}>
+        <p>
+          <span>
+            <AiOutlineBranches
+              style={{ backgroundColor: "transparent" }}
+              color="#fff"
+            />
+          </span>
+          What are you looking for?
+        </p>
+
+        <CategoriesGrid />
+      </div>
+    </>
+  );
+};
+
+const CategoriesGrid = () => {
+  return (
+    <div className={classes["category__grid"]}>
+      {categories.map((item) => (
+        <CategoryCard name={item.name}></CategoryCard>
+      ))}
     </div>
   );
 };

@@ -30,47 +30,55 @@ const faqs = [
 
 const CreatorPage = () => {
   return (
-    <div className={classes["creators"]}>
-      <div className={classes["creators__header"]}>
-        <div className={classes["creators__header-content"]}>
-          <h5>START A BLOG FOR FREE</h5>
-          <h2>Publish, grow, and earn, all in one place.</h2>
-          <p>
-            If you have a story to tell, knowledge to share, or a perspective to
-            offer
-            <br /> — welcome home. Sign up for free so your writing can thrive
-            in a network<br></br> supported by millions of readers.
-          </p>
-          <span>
-            <button className={classes["button"]}>Start Writing</button>
-          </span>
-        </div>
-        <div
-          id={classes["a"]}
-          className={classes["creators__header-animation"]}
-        >
-          <Lottie
-            style={{ backgroundColor: "transparent" }}
-            animationData={BrainAnimation}
-            loop={true}
-          ></Lottie>
+    <>
+      <div className={classes["creators"]}>
+        <div className={classes["creators__header"]}>
+          <div className={classes["creators__header-content"]}>
+            <h5>START A BLOG FOR FREE</h5>
+            <h2>Publish, grow, and earn, all in one place.</h2>
+            <p>
+              If you have a story to tell, knowledge to share, or a perspective
+              to offer
+              <br /> — welcome home. Sign up for free so your writing can thrive
+              in a network<br></br> supported by millions of readers.
+            </p>
+            <span>
+              <button className={classes["button"]}>Start Writing</button>
+            </span>
+          </div>
+          <div
+            id={classes["a"]}
+            className={classes["creators__header-animation"]}
+          >
+            <Lottie
+              style={{ backgroundColor: "transparent" }}
+              animationData={BrainAnimation}
+              loop={true}
+            ></Lottie>
+          </div>
         </div>
       </div>
-      <div className={classes["creator__content-faqs"]}>
-        <h1>More about writing on MetaBlogs</h1>
-        <div className={classes["creator__content-faq"]}>
-          {faqs.map(({ id, q, a }) => (
-            <FaqCard
-              q={q}
-              a={a}
-              key={id}
-              index={id}
-              onClick={() => {
-                console.log("Tapping");
-              }}
-            />
-          ))}
-        </div>
+      <FAQList />
+    </>
+  );
+};
+
+const FAQList = () => {
+  return (
+    <div className={classes["creator__content-faqs"]}>
+      <h1>More about writing on MetaBlogs</h1>
+      <div className={classes["creator__content-faq"]}>
+        {faqs.map(({ id, q, a }) => (
+          <FaqCard
+            q={q}
+            a={a}
+            key={id}
+            index={id}
+            onClick={() => {
+              console.log("Tapping");
+            }}
+          />
+        ))}
       </div>
     </div>
   );

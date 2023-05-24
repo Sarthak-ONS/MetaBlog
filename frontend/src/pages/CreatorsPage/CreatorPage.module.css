@@ -1,10 +1,13 @@
 .creators {
   background: linear-gradient(360deg, rgba(0, 0, 0, 0.8), rgb(148, 46, 46, 0.1)),
     url("../../assets/radiant-gradient2.svg");
-  height: 100vh;
+  height: fit-content;
   background-repeat: no-repeat;
   background-size: cover;
+
   color: var(--color-text);
+
+  margin-top: 11rem;
 }
 
 .creators__header {
@@ -74,10 +77,28 @@ span {
 
 .creator__content-faqs {
   padding: 2rem;
+  color: white;
 }
 
 .creator__content-faqs h1 {
   text-align: left;
   font-weight: 600;
   font-size: 3rem;
+}
+
+@media (max-width: 650px) {
+  .creators {
+    margin: 0 0;
+    margin-top: 2rem;
+  }
+
+  .creators__header-content h2 {
+    font-size: 3rem;
+    line-height: 4rem;
+  }
+
+  .creator__content-faqs h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
 }

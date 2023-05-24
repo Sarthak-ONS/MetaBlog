@@ -1,0 +1,39 @@
+footer {
+  background-color: var(--color-bg);
+  color: white;
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer__brand {
+  font-size: 25px;
+  color: var(--color-text);
+  background-color: transparent;
+}
+
+.footer__brand span {
+  font-weight: 800;
+  background-color: transparent;
+}
+
+.footer__links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  font-weight: 300;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+@media (max-width: 650px) {
+  footer {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .footer__links {
+    flex-direction: column;
+  }
+}

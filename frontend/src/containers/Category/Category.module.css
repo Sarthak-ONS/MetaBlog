@@ -1,7 +1,14 @@
 .category {
-  background-image: url("../../assets/radiant-gradient.svg");
-  height: 100vh;
+  background-image: linear-gradient(
+      180deg,
+      rgb(4, 12, 24, 1),
+      rgb(148, 46, 46, 0.1)
+    ),
+    url("../../assets/radiant-gradient.svg");
+
+  height: fit-content;
   background-size: cover;
+  padding: 4rem;
 }
 
 .category > p {
@@ -18,4 +25,31 @@
   background-color: transparent;
   vertical-align: middle;
   padding: 0 0.5rem;
+}
+
+.category__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+
+  background-color: transparent;
+
+  margin-top: 6rem;
+}
+
+@media (max-width: 650px) {
+  .category > p {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .category p span {
+    display: none;
+  }
+
+  .category {
+    padding: 2rem;
+  }
 }

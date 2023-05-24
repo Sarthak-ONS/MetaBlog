@@ -1,16 +1,30 @@
 .faq__card-question {
   list-style: none;
   margin: 2rem;
-  font-size: 1.20rem;
+  font-size: 1.2rem;
   cursor: pointer;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  border-bottom: 1px solid white;
 }
 .faq__ans {
   margin: 2rem;
   background-color: #102a51;
   padding: 2rem;
   border-radius: 10px;
+}
+
+@media (max-width: 650px) {
+  .faq__card-question {
+    font-size: 1rem;
+    margin: 1rem 0;
+  }
+  .faq__ans {
+    margin: 0rem;
+    padding: 1rem;
+    margin: 1rem;
+  }
 }
