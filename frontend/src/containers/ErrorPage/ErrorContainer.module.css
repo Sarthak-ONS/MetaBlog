@@ -12,3 +12,7 @@
   font-weight: 500;
 }
 
+.error-content p:nth-child(2) {
+  font-size: 1rem;
+  padding-top: 1rem;
+}

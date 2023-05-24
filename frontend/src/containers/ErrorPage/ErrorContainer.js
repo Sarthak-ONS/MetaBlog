@@ -1,11 +1,11 @@
 import React from "react";
 import classes from "./ErrorContainer.module.css";
 
-const ErrorContainer = () => {
+const ErrorContainer = ({ title, message }) => {
   return (
     <div className={classes["error-content"]}>
-      <p>Guess!, Something went wrong!</p>
-      <p>Please try again later.</p>
+      <p>{title}</p>
+      <p>{message}</p>
     </div>
   );
 };

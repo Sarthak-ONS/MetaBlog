@@ -4,11 +4,9 @@ import classes from "./Category.module.css";
 import CategoryCard from "../../components/CategoryCard/CategoryCard";
 
 import { AiOutlineBranches } from "react-icons/ai";
-import { useLoaderData } from "react-router-dom";
+import { json, useLoaderData } from "react-router-dom";
 
 const Category = () => {
-  const data = useLoaderData();
-
   return (
     <>
       <div className={classes["category"]}>
@@ -31,9 +29,23 @@ const Category = () => {
 const CategoriesGrid = () => {
   const data = useLoaderData();
 
+  const styles = {
+    color: "white",
+    backgroundColor: "transparent",
+    textAlign: "center",
+    padding: "2rem",
+  };
+
+  if (data.isError) {
+    console.log(data.message);
+    return <h5 style={styles}>{data.message}</h5>;
+  }
+
+  const categories = data.categories;
+
   return (
     <div className={classes["category__grid"]}>
-      {data.map((item) => (
+      {categories.map((item) => (
         <CategoryCard key={item.index} name={item.name}></CategoryCard>
       ))}
     </div>
@@ -44,12 +56,14 @@ export async function loader() {
   const response = await fetch("http://localhost:4000/blogs/categories");
 
   if (!response.ok) {
-    //.,,,,,
+    return json(
+      { message: "Could not fetch categories" },
+      {
+        status: 404,
+      }
+    );
   } else {
-    const resData = await response.json();
-
-    console.log(resData);
-    return resData.categories;
+    return response;
   }
 }
 
