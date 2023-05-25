@@ -34,7 +34,16 @@ exports.getSingleBlog = async (req, res, next) => {
         .status(404)
         .json({ status: "ERROR", message: "Blog Not found" });
     }
-    res.status(200).json({ status: "SUCCESS", blog });
+    res.status(200).json({
+      status: "SUCCESS",
+      blog: {
+        title: blog.title,
+        content: blog.content,
+        author: blog.author,
+        image: blog.image.secure_url,
+        blogId: blog._id,
+      },
+    });
   } catch (error) {
     const err = new Error();
     err.message = "Failed to Fetch Blog";
@@ -75,7 +84,7 @@ exports.createNewBlog = async (req, res, next) => {
         responsive: true,
         width: "auto",
         crop: "crop",
-        aspect_ratio: 16/9,
+        aspect_ratio: 16 / 9,
       },
     });
 
