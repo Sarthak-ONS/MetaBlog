@@ -55,13 +55,14 @@ const CategoriesGrid = () => {
 export async function loader() {
   const response = await fetch("http://localhost:4000/blogs/categories");
 
+  console.log(response.status , "////////////////////////");
+
   if (!response.ok) {
-    return json(
-      { message: "Could not fetch categories" },
-      {
-        status: 404,
-      }
-    );
+    const data = { message: "Could not fetch categories." };
+
+    return json(data, {
+      status: 500,
+    });
   } else {
     return response;
   }
