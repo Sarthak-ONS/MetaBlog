@@ -28,7 +28,7 @@ exports.getSingleBlog = async (req, res, next) => {
   try {
     const { blogId } = req.params;
     const blog = await Blog.findById(blogId)
-      .populate("author", ["name", "email"])
+      .populate("author", ["name", "email", "image"])
       .exec();
 
     if (!blog) {
@@ -50,9 +50,6 @@ exports.getSingleBlog = async (req, res, next) => {
 
 exports.createNewBlog = async (req, res, next) => {
   const { title, content, category, tags } = req.body;
-
-  console.log(req.body);
-  console.log(req.files);
 
   const errors = validationResult(req);
 
@@ -82,6 +79,8 @@ exports.createNewBlog = async (req, res, next) => {
       },
     });
 
+    console.log(req.userId, "////////*********");
+
     const blog = new Blog({
       title,
       content,
@@ -108,4 +107,29 @@ exports.createNewBlog = async (req, res, next) => {
   }
 };
 
-exports.deleteSingleBlog = async (req, res, next) => {};
+exports.deleteSingleBlog = async (req, res, next) => {
+  const { blogId } = req.body;
+  try {
+    const blog = await Blog.findById(blogId);
+
+    if (!blog) {
+      const err = new Error("Blog not found");
+      err.httpStatusCode = 404;
+      return next(err);
+    }
+    if (blog.author.toString() !== req.userId) {
+      const err = new Error("You are not authorized to delete this blog");
+      err.httpStatusCode = 401;
+      return next(err);
+    }
+
+    await blog.remove();
+    res
+      .status(200)
+      .json({ status: "SUCCESS", message: "Successfully deleted blog." });
+  } catch (error) {
+    const err = new Error("Failed to delete blog");
+    err.httpStatusCode = 422;
+    return next(err);
+  }
+};

@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const cloudinary = require("cloudinary");
 
 const { validationResult } = require("express-validator");
 
@@ -13,6 +14,13 @@ exports.signup = async (req, res, next) => {
       console.log(errors.array());
       return res.status(422).json({ errors: errors.array()[0] });
     }
+
+    if (!req.files) {
+      return res
+        .status(400)
+        .json({ status: "ERROR", message: "No image Uploaded" });
+    }
+
     const { name, email, password } = req.body;
 
     const user = await User.findOne({ email });
@@ -23,8 +31,28 @@ exports.signup = async (req, res, next) => {
       return next(error);
     }
 
+    let result;
+
+    let file = req.files.image;
+
+    result = await cloudinary.v2.uploader.upload(file.tempFilePath, {
+      folder: "blogs",
+      unique_filename: true,
+      transformation: [
+        { width: 400, height: 250, gravity: "face", crop: "fill" },
+      ],
+    });
+
     const hashedPassword = await bcrypt.hash(password, 12);
-    const newUser = new User({ name, email, password: hashedPassword });
+    const newUser = new User({
+      name,
+      email,
+      password: hashedPassword,
+      image: {
+        id: result.public_id,
+        secure_url: result.secure_url,
+      },
+    });
 
     await newUser.save();
     return res.status(200).json({ message: "User Created Successfully!" });

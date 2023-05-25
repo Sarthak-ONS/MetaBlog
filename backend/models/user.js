@@ -16,6 +16,16 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    image: {
+      id: {
+        type: String,
+        required: true,
+      },
+      secure_url: {
+        type: String,
+        required: true,
+      },
+    },
     resetToken: String,
     resetTokenExpiration: Date,
     bookmarks: [
