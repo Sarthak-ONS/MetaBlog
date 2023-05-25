@@ -71,7 +71,7 @@ exports.login = async (req, res, next) => {
 
     if (!errors.isEmpty()) {
       console.log(errors.array());
-      return res.status(422).json({ errors: errors.array() });
+      return res.status(422).json({ errors: errors.array()[0] });
     }
 
     const { email, password } = req.body;

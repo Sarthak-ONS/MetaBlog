@@ -1,43 +1,51 @@
 import React, { useState } from "react";
 import classes from "./LoginPage.module.css";
-import { NavLink } from "react-router-dom";
+import {
+  Form,
+  NavLink,
+  redirect,
+  useActionData,
+  useNavigation,
+} from "react-router-dom";
 
 import Loader from "../../components/Loaders/Loader";
 
 const LoginPage = () => {
   const [showLoader, setShowLoader] = useState(false);
 
-  const loginghandler = () => {
-    setShowLoader(true);
-    setTimeout(() => {
-      setShowLoader(false);
-    }, 2000);
-  };
+  const data = useActionData();
+  const navigation = useNavigation();
+
+  const isSubmitting = navigation.state === "submitting";
+
+  console.log(data);
 
   return (
     <div className={classes["login__container"]}>
       <div className={classes["login-box"]}>
         <p>Login to MetaBlog</p>
-        <form>
+        {data && data.errors && data.errors && (
+          <p className={classes["error__msg"]}>{data.errors.msg}</p>
+        )}
+        {data && data.status === "ERROR" && (
+          <p className={classes["error__msg"]}>{data.errorMessage}</p>
+        )}
+        <Form method="POST">
           <div className={classes["user-box"]}>
-            <input required="" name="" type="text" />
-            <label>Email</label>
+            <label htmlFor="email">Email</label>
+            <input required name="email" type="text" />
           </div>
           <div className={classes["user-box"]}>
-            <input required="" name="" type="password" />
-            <label>Password</label>
+            <label htmlFor="password">Password</label>
+            <input required name="password" type="password" />
           </div>
-          {showLoader && <Loader />}
-          {!showLoader && (
-            <button type="button" onClick={loginghandler}>
-              {/* <span></span>
-              <span></span>
-              <span></span>
-              <span></span> */}
+          {isSubmitting && <Loader />}
+          {!isSubmitting && (
+            <button disabled={isSubmitting} type="submit">
               Submit
             </button>
           )}
-        </form>
+        </Form>
         <p>
           Don't have an account?{" "}
           <NavLink to="/auth/signup" className={classes["a2"]}>
@@ -48,5 +56,41 @@ const LoginPage = () => {
     </div>
   );
 };
+
+export async function action({ request }) {
+  console.log("Action is Called");
+
+  const data = await request.formData();
+
+  const authData = {
+    email: data.get("email"),
+    password: data.get("password"),
+  };
+
+  console.log(authData);
+
+  const response = await fetch("http://localhost:4000/auth/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(authData),
+  });
+
+  if (
+    response.status === 422 ||
+    response.status === 401 ||
+    response.status == 404
+  ) {
+    return response;
+  }
+
+  if (!response.ok) {
+    const data = { message: "Could not authenticate user." };
+    throw { isError: true, message: data.message, status: response.status };
+  }
+
+  return redirect("/");
+}
 
 export default LoginPage;

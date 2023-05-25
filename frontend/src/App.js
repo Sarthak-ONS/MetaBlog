@@ -7,7 +7,7 @@ import HomePage from "./pages/HomePage";
 import ErrorPage from "./pages/ErrorPage";
 import AboutPage from "./pages/AbooutPage";
 import BlogPage from "./pages/BlogPage";
-import LoginPage from "./pages/AuthPages/LoginPage";
+import LoginPage, { action as LoginAction } from "./pages/AuthPages/LoginPage";
 import SignupPage from "./pages/AuthPages/SignupPage";
 import CreatorPage from "./pages/CreatorsPage/CreatorPage";
 import WriteBlog from "./pages/CreatorsPage/WriteBlog";
@@ -49,6 +49,7 @@ const router = createBrowserRouter([
       },
       {
         path: "auth/login",
+        action: LoginAction,
         element: <LoginPage />,
       },
       {
