@@ -53,16 +53,13 @@ const CategoriesGrid = () => {
 };
 
 export async function loader() {
-  const response = await fetch("http://localhost:4000/blogs/categories");
-
-  console.log(response.status , "////////////////////////");
+  const response = await fetch("http://localhost:4000/blog/categories");
 
   if (!response.ok) {
+    console.log("RESPONSE NOT OKAY");
     const data = { message: "Could not fetch categories." };
-
-    return json(data, {
-      status: 500,
-    });
+    // throw { isError: true, message: data.message, status: 500 };
+    throw json(data, { status: 500 });
   } else {
     return response;
   }

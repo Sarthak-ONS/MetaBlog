@@ -11,7 +11,7 @@ exports.signup = async (req, res, next) => {
 
     if (!errors.isEmpty()) {
       console.log(errors.array());
-      return res.status(422).json({ errors: errors.array() });
+      return res.status(422).json({ errors: errors.array()[0] });
     }
     const { name, email, password } = req.body;
 
