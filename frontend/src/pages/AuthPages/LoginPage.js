@@ -18,8 +18,6 @@ const LoginPage = () => {
 
   const isSubmitting = navigation.state === "submitting";
 
-  console.log(data);
-
   return (
     <div className={classes["login__container"]}>
       <div className={classes["login-box"]}>
@@ -58,7 +56,6 @@ const LoginPage = () => {
 };
 
 export async function action({ request }) {
-  console.log("Action is Called");
 
   const data = await request.formData();
 
@@ -89,6 +86,13 @@ export async function action({ request }) {
     const data = { message: "Could not authenticate user." };
     throw { isError: true, message: data.message, status: response.status };
   }
+
+  const resData = await response.json();
+  const token = resData.token;
+  // const userId = resData.userId;
+
+  // localStorage.setItem("token", token);
+  // localStorage.setItem("userId", userId);
 
   return redirect("/");
 }

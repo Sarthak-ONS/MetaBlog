@@ -19,7 +19,7 @@ const ErrorPage = () => {
 
   return (
     <div>
-      <Navbar></Navbar>
+      {/* <Navbar></Navbar> */}
       <ErrorContainer title={title} message={message} />
     </div>
   );

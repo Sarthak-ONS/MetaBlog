@@ -15,11 +15,11 @@ exports.signup = async (req, res, next) => {
       return res.status(422).json({ errors: errors.array()[0] });
     }
 
-    if (!req.files) {
-      return res
-        .status(400)
-        .json({ status: "ERROR", message: "No image Uploaded" });
-    }
+    // if (!req.files) {
+    //   return res
+    //     .status(400)
+    //     .json({ status: "ERROR", message: "No image Uploaded" });
+    // }
 
     const { name, email, password } = req.body;
 
@@ -27,21 +27,21 @@ exports.signup = async (req, res, next) => {
 
     if (user) {
       const error = new Error("User Already Exists");
-      error.httpStatusCode = 305;
+      error.httpStatusCode = 422;
       return next(error);
     }
 
-    let result;
+    // let result;
 
-    let file = req.files.image;
+    // let file = req.files.image;
 
-    result = await cloudinary.v2.uploader.upload(file.tempFilePath, {
-      folder: "blogs",
-      unique_filename: true,
-      transformation: [
-        { width: 400, height: 250, gravity: "face", crop: "fill" },
-      ],
-    });
+    // result = await cloudinary.v2.uploader.upload(file.tempFilePath, {
+    //   folder: "blogs",
+    //   unique_filename: true,
+    //   transformation: [
+    //     { width: 400, height: 250, gravity: "face", crop: "fill" },
+    //   ],
+    // });
 
     const hashedPassword = await bcrypt.hash(password, 12);
     const newUser = new User({
@@ -49,8 +49,8 @@ exports.signup = async (req, res, next) => {
       email,
       password: hashedPassword,
       image: {
-        id: result.public_id,
-        secure_url: result.secure_url,
+        id: "image id",
+        secure_url: "secure url def",
       },
     });
 

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import classes from "./Navbar.module.css";
-import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
-import { NavLink, useNavigate } from "react-router-dom";
+import { RiMenu3Line, RiCloseLine, RiOutletFill } from "react-icons/ri";
+import { Form, NavLink, useLoaderData, useNavigate } from "react-router-dom";
 
 import CustomButton from "../Button/CustomButton";
 
 const Navbar = () => {
+  const token = useLoaderData("root");
+
   const [isVisible, setIsVisible] = useState(true);
   const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
 
@@ -55,7 +57,6 @@ const Navbar = () => {
             <div className={`${classes["nav__brand"]} `}>
               Meta<span>Blog</span>
             </div>
-
             <div className={classes["nav__links-container"]}>
               <ul className={classes["nav__links"]}>
                 <li className={classes["nav__links-link"]}>
@@ -100,17 +101,24 @@ const Navbar = () => {
                 </li>
               </ul>
             </div>
-            <div className={classes["nav__button"]}>
-              <CustomButton
-                text={"Login"}
-                onClick={loginClickHandler.bind(null, "login")}
-              />
-              <CustomButton
-                color={"var(--color-text)"}
-                text={"Sign up"}
-                onClick={loginClickHandler.bind(null, "signup")}
-              />
-            </div>
+            {!token && (
+              <div className={classes["nav__button"]}>
+                <CustomButton
+                  text={"Login"}
+                  onClick={loginClickHandler.bind(null, "login")}
+                />
+                <CustomButton
+                  color={"var(--color-text)"}
+                  text={"Sign up"}
+                  onClick={loginClickHandler.bind(null, "signup")}
+                />
+              </div>
+            )}
+            {token && (
+              <Form action="/logout" method="POST">
+                <button type="submit">Logout</button>
+              </Form>
+            )}
           </nav>
 
           <div className={classes["nav__mobile"]}>

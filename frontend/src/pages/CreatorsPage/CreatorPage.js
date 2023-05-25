@@ -33,7 +33,7 @@ const CreatorPage = () => {
   const navigate = useNavigate();
 
   const writingButtonClickHandler = () => {
-    navigate("/blog/new/123");
+    navigate("/blog/new");
   };
   return (
     <>
