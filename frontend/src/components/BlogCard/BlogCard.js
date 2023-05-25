@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "./BlogCard.module.css";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const BlogCard = ({
   index,
@@ -10,9 +11,16 @@ const BlogCard = ({
   readTimeText,
   imageUrl,
 }) => {
+  const navigate = useNavigate();
+
+  const buttonClickHandler = () => {
+    index = "646f923644c5f1288f59a941";
+    navigate(`/blog/${index}`);
+  };
+
   return (
     <motion.div
-      // variants={variants}
+      onClick={buttonClickHandler}
       whileHover={{ scale: 1 }}
       whileTap={{ scale: 0.7 }}
       className={classes["card"]}
