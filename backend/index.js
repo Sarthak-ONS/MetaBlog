@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-require("dotenv").config();
+const path = require("path");
+require("dotenv").config({ path: path.join(__dirname , '../' , 'vars' , '.env') });
 
 const mongoose = require("mongoose");
 
@@ -40,6 +41,7 @@ mongoose
   .connect(MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true })
   .then((res) => {
     app.listen(PORT, () => {
+      console.log("DATABASE CONNECTED");
       console.log(`Server is running on ${PORT}`);
     });
   })
