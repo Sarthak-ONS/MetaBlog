@@ -13,6 +13,7 @@ import CreatorPage from "./pages/CreatorsPage/CreatorPage";
 import WriteBlog from "./pages/CreatorsPage/WriteBlog";
 
 import { loader as categoryLoader } from "./containers/Category/Category";
+import SingleBlog, { SingleBlogLoader } from "./pages/Blogs/SingleBlog";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,11 @@ const router = createBrowserRouter([
       {
         path: "blog",
         element: <BlogPage />,
+      },
+      {
+        path: "blog/:blogId",
+        loader: SingleBlogLoader,
+        element: <SingleBlog />,
       },
       {
         path: "blog/new/:id",

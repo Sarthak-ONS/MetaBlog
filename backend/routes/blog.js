@@ -6,10 +6,15 @@ const blogControllers = require("../controllers/blog");
 
 const isAuth = require("../middleware/is-Auth");
 
+router.get("/", blogControllers.getBlogs);
+
+// GET all Categories
 router.get("/categories", blogControllers.getCategories);
 
-router.get("/:blogId", isAuth, blogControllers.getSingleBlog);
+// GET Single Blog
+router.get("/:blogId", blogControllers.getSingleBlog);
 
+// POST create new Blog
 router.post(
   "/new",
   isAuth,
@@ -25,6 +30,7 @@ router.post(
   blogControllers.createNewBlog
 );
 
+// DEL Delete Single Blog
 router.delete("/:blogId", isAuth, blogControllers.deleteSingleBlog);
 
 module.exports = router;

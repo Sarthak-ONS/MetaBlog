@@ -58,8 +58,7 @@ export async function loader() {
   if (!response.ok) {
     console.log("RESPONSE NOT OKAY");
     const data = { message: "Could not fetch categories." };
-    // throw { isError: true, message: data.message, status: 500 };
-    throw json(data, { status: 500 });
+    throw { isError: true, message: data.message, status: 500 };
   } else {
     return response;
   }

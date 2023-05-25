@@ -1,6 +1,7 @@
 const { validationResult } = require("express-validator");
 const cloudinary = require("cloudinary");
 const Blog = require("../models/blog");
+const user = require("../models/user");
 
 const categories = [
   { index: 1, name: "Food" },
@@ -108,7 +109,8 @@ exports.createNewBlog = async (req, res, next) => {
 };
 
 exports.deleteSingleBlog = async (req, res, next) => {
-  const { blogId } = req.body;
+  const { blogId } = req.params;
+  console.log(blogId);
   try {
     const blog = await Blog.findById(blogId);
 
@@ -123,12 +125,27 @@ exports.deleteSingleBlog = async (req, res, next) => {
       return next(err);
     }
 
-    await blog.remove();
+    await blog.deleteOne();
     res
       .status(200)
       .json({ status: "SUCCESS", message: "Successfully deleted blog." });
   } catch (error) {
+    console.log(error);
     const err = new Error("Failed to delete blog");
+    err.httpStatusCode = 422;
+    return next(err);
+  }
+};
+
+exports.getBlogs = async (req, res, next) => {
+  try {
+    const blogs = await Blog.find().populate("author", ["name", "image"]);
+    res
+      .status(200)
+      .json({ status: "SUCCESS", message: "Blog Sent Successfully!", blogs });
+  } catch (error) {
+    console.log(error);
+    const err = new Error("Failed to get blogs");
     err.httpStatusCode = 422;
     return next(err);
   }
