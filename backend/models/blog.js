@@ -12,6 +12,10 @@ const blogSchema = new Schema(
       type: String,
       required: true,
     },
+    readTime: {
+      type: String,
+      required: true,
+    },
     image: {
       id: {
         type: String,

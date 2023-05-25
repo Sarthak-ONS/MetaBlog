@@ -73,7 +73,7 @@ app.use("/auth", authRoutes);
 app.use("/blog", blogRoutes);
 
 app.use((error, req, res, next) => {
-  console.log(error.httpStatusCode);
+  console.log(error);
   return res.status(error.httpStatusCode).json({
     status: "ERROR",
     errorMessage: error.message,

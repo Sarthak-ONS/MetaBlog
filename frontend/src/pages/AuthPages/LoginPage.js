@@ -91,7 +91,7 @@ export async function action({ request }) {
   const token = resData.token;
   // const userId = resData.userId;
 
-  // localStorage.setItem("token", token);
+  localStorage.setItem("token", token);
   // localStorage.setItem("userId", userId);
 
   return redirect("/");

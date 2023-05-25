@@ -54,6 +54,8 @@ exports.createNewBlog = async (req, res, next) => {
 
   const errors = validationResult(req);
 
+  console.log(errors);
+
   if (!errors.isEmpty()) {
     return res.status(422).json({ status: "ERROR", errors: errors.array()[0] });
   }
@@ -69,9 +71,14 @@ exports.createNewBlog = async (req, res, next) => {
 
     let file = req.files.image;
 
+    const readTime =
+      parseInt((content.split(" ").length / 200).toString()) <= 0
+        ? 1
+        : parseInt((content.split(" ").length / 200).toString()) + " min read";
+
     result = await cloudinary.v2.uploader.upload(file.tempFilePath, {
       folder: "blogs",
-      unique_filename: true,
+      unique_filenfame: true,
       transformation: {
         responsive: true,
         width: "auto",
@@ -85,6 +92,7 @@ exports.createNewBlog = async (req, res, next) => {
     const blog = new Blog({
       title,
       content,
+      readTime,
       category: [category],
       tags: [tags],
       image: {
@@ -102,6 +110,7 @@ exports.createNewBlog = async (req, res, next) => {
       message: "Blog created Successfully!",
     });
   } catch (error) {
+    console.log(error);
     const err = new Error("Failed to create a new Blog");
     err.httpStatusCode = 422;
     return next(err);

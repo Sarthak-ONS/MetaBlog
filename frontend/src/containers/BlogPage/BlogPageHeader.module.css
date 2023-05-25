@@ -1,5 +1,10 @@
 .main-header {
-  background: url("https://images.pexels.com/photos/2473183/pexels-photo-2473183.jpeg");
+  background: linear-gradient(
+      180deg,
+      rgba(50, 50, 50, 0.2),
+      rgba(31, 31, 31, 1)
+    ),
+    url("https://images.pexels.com/photos/1044990/pexels-photo-1044990.jpeg");
   height: 80vh;
   background-size: cover;
   background-position: center;
@@ -12,7 +17,7 @@
   flex-direction: column;
   justify-content: flex-end;
 
-  margin-top: 8rem;
+  padding-top: 8rem;
 }
 
 .main-header p {
