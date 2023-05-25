@@ -27,22 +27,18 @@ exports.getCategories = async (req, res, next) => {
 exports.getSingleBlog = async (req, res, next) => {
   try {
     const { blogId } = req.params;
-    const blog = await Blog.findById(blogId);
+    const blog = await Blog.findById(blogId)
+      .populate("author", ["name", "email"])
+      .exec();
 
     if (!blog) {
       return res
         .status(404)
         .json({ status: "ERROR", message: "Blog Not found" });
     }
-    res.status(200).json({
+    return res.status(200).json({
       status: "SUCCESS",
-      blog: {
-        title: blog.title,
-        content: blog.content,
-        author: blog.author,
-        image: blog.image.secure_url,
-        blogId: blog._id,
-      },
+      blog,
     });
   } catch (error) {
     const err = new Error();
@@ -50,8 +46,6 @@ exports.getSingleBlog = async (req, res, next) => {
     err.httpStatusCode = 422;
     return next(err);
   }
-
-  res.status(200).json({ message: "Your data is processed" });
 };
 
 exports.createNewBlog = async (req, res, next) => {
