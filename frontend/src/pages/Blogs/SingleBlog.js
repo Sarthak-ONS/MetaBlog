@@ -1,17 +1,38 @@
 import React, { useEffect, useState } from "react";
 import classes from "./SingleBlog.module.css";
-import { useLoaderData, useParams, useSubmit } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { getAuthToken } from "../../utils/auth";
+
+import Snackbar from "@mui/material/Snackbar";
+import useHttp from "../../hooks/use-http";
+
+import MuiAlert from "@mui/material/Alert";
 
 import {
   BsFillBookmarkFill,
   BsBookmark,
   BsFillShareFill,
 } from "react-icons/bs";
-import { AiFillLike, AiOutlineLike } from "react-icons/ai";
-import useHttp from "../../hooks/use-http";
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const SingleBlog = () => {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   const [isBookMarked, setIsBookMarked] = useState(false);
 
   const data = useLoaderData();
@@ -39,6 +60,7 @@ const SingleBlog = () => {
     if (d.message === "ADDED TO BOOKMARKS") {
       setIsBookMarked(true);
     } else {
+      handleClick();
       setIsBookMarked(false);
     }
   };
@@ -92,6 +114,17 @@ const SingleBlog = () => {
           {data.blog.content}
         </p>
       </div>
+
+      <Snackbar open={open} autoHideDuration={4000}   style={{ backgroundColor: "green" }} onClose={handleClose}>
+        <Alert
+          onClose={handleClose}
+          style={{ backgroundColor: "green" }}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          Bookmarked!
+        </Alert>
+      </Snackbar>
     </>
   );
 };
