@@ -1,7 +1,8 @@
 const { validationResult } = require("express-validator");
 const cloudinary = require("cloudinary");
 const Blog = require("../models/blog");
-const user = require("../models/user");
+const User = require("../models/user");
+const blog = require("../models/blog");
 
 const categories = [
   { index: 1, name: "Food" },
@@ -154,8 +155,47 @@ exports.getBlogs = async (req, res, next) => {
       .status(200)
       .json({ status: "SUCCESS", message: "Blog Sent Successfully!", blogs });
   } catch (error) {
-    console.log(error);
     const err = new Error("Failed to get blogs");
+    err.httpStatusCode = 422;
+    return next(err);
+  }
+};
+
+exports.bookMark = async (req, res, next) => {
+  const { blogId } = req.params;
+
+  const userId = req.userId;
+  try {
+    const user = await User.findById(userId);
+
+    let bookMarks = user.bookmarks;
+
+    if (bookMarks.includes(blogId)) {
+      bookMarks.splice(
+        bookMarks.findIndex((item) => item.toString() === blogId),
+        1
+      );
+
+      console.log(bookMarks);
+      await user.save();
+      return res
+        .status(200)
+        .json({ status: "SUCCESS", message: "DELETED FROM BOOKMARKS" });
+    } else {
+      bookMarks.push(blogId);
+      console.log(bookMarks);
+
+      user.bookmarks = bookMarks;
+
+      await user.save();
+
+      return res
+        .status(200)
+        .json({ status: "SUCCESS", message: "ADDED TO BOOKMARKS" });
+    }
+  } catch (error) {
+    console.log(error);
+    const err = new Error("Failed to bookmark.");
     err.httpStatusCode = 422;
     return next(err);
   }

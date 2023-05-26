@@ -34,4 +34,6 @@ router.post(
 // DEL Delete Single Blog
 router.delete("/:blogId", isAuth, blogControllers.deleteSingleBlog);
 
+router.get("/:blogId/bookmark", isAuth, blogControllers.bookMark);
+
 module.exports = router;

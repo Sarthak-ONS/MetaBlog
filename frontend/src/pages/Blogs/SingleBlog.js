@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./SingleBlog.module.css";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 
 import {
   BsFillBookmarkFill,
@@ -10,6 +10,8 @@ import {
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 
 const SingleBlog = () => {
+  const [isBookMarked, setIsBookMarked] = useState(false);
+
   const data = useLoaderData();
 
   const styles = {
@@ -19,6 +21,10 @@ const SingleBlog = () => {
   const blogDate = new Date(data.blog.createdAt).toLocaleDateString();
 
   const bookMarkHandler = () => {};
+
+  // useEffect(() => {
+  //   return () => {};
+  // }, [isBookMarked]);
 
   return (
     <>
@@ -32,7 +38,8 @@ const SingleBlog = () => {
           <div></div>
           <h1>{data.blog.title}</h1>
           <div className={classes["SingleBlog__actions-buttons"]}>
-            <BsBookmark size={15} />
+            {isBookMarked && <BsBookmark size={15} />}
+            {!isBookMarked && <BsFillBookmarkFill size={15} />}
             <BsFillShareFill size={15} />
           </div>
         </div>
