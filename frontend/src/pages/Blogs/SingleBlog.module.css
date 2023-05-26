@@ -14,6 +14,7 @@
 .SingleBlog__coverimage {
   height: 70vh;
   width: 100%;
+  margin-bottom: 4rem;
   background-color: red;
   background-size: cover;
   scroll-behavior: smooth;
@@ -64,9 +65,23 @@
   font-weight: 600;
 }
 
+.SingleBlog__actions {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgb(170, 170, 170, 0.1);
+  border-bottom: 1px solid rgb(170, 170, 170, 0.1);
+  padding: 0.5rem;
+}
+
+.SingleBlog__actions .SingleBlog__actions-bookShare {
+  display: flex;
+  gap: 0.5rem;
+}
+
 .SingleBlog__header-date {
-  color: grey;
+  color: white;
   padding: 0.5rem 0;
+  font-style: oblique;
 }
 
 .SingleBlog__header-content {

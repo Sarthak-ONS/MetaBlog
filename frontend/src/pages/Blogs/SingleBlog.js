@@ -1,6 +1,12 @@
 import React from "react";
 import classes from "./SingleBlog.module.css";
 import { useLoaderData } from "react-router-dom";
+import {
+  BsFillBookmarkFill,
+  BsBookmark,
+  BsFillShareFill,
+} from "react-icons/bs";
+import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 
 const monthNames = [
   "January",
@@ -26,6 +32,8 @@ const SingleBlog = () => {
 
   const blogDate = new Date(data.blog.createdAt);
 
+  const iconSize = 20;
+
   return (
     <>
       <div className={classes["SingleBlog__header"]}>
@@ -38,8 +46,20 @@ const SingleBlog = () => {
             <button>Follow</button>
           </span>
         </div>
+
+        <div className={classes["SingleBlog__actions"]}>
+          <div className={classes["SingleBlog__actions-like"]}>
+            <AiOutlineLike size={iconSize} />
+          </div>
+          <div className={classes["SingleBlog__actions-bookShare"]}>
+            <BsBookmark size={iconSize} />
+            <BsFillShareFill size={iconSize} />
+          </div>
+        </div>
+
         <p className={classes["SingleBlog__header-date"]}>
-          {monthNames[blogDate.getMonth()]} , {blogDate.getFullYear()}
+          Published on {monthNames[blogDate.getMonth()]} ,{" "}
+          {blogDate.getFullYear()}
         </p>
         <div style={styles} className={classes["SingleBlog__coverimage"]} />
         <p className={classes["SingleBlog__header-content"]}>
