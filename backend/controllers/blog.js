@@ -50,7 +50,7 @@ exports.getSingleBlog = async (req, res, next) => {
 };
 
 exports.createNewBlog = async (req, res, next) => {
-  const { title, content, category, tags } = req.body;
+  const { title, subtitle, content, category, tags } = req.body;
 
   const errors = validationResult(req);
 
@@ -91,6 +91,7 @@ exports.createNewBlog = async (req, res, next) => {
 
     const blog = new Blog({
       title,
+      subtitle,
       content,
       readTime,
       category: [category],

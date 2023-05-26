@@ -8,6 +8,10 @@ const blogSchema = new Schema(
       type: String,
       required: true,
     },
+    subtitle: {
+      type: String,
+      required: true,
+    },
     content: {
       type: String,
       required: true,

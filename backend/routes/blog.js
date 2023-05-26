@@ -20,6 +20,7 @@ router.post(
   isAuth,
   [
     body("title", "Invalid Title").trim().isLength({ min: 10 }),
+    body("subtitle", "Invalid Subtitle").trim().isLength({ min: 10 }),
     body("content", "Invalid Content").trim().isLength({ min: 20 }),
     body("tags").trim().isLength({ min: 2 }).withMessage("Invalid Tags"),
     body("category")

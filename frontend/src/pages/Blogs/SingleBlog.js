@@ -2,6 +2,21 @@ import React from "react";
 import classes from "./SingleBlog.module.css";
 import { useLoaderData } from "react-router-dom";
 
+const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
 const SingleBlog = () => {
   const data = useLoaderData();
 
@@ -9,21 +24,24 @@ const SingleBlog = () => {
     backgroundImage: `url(${data.blog.image.secure_url})`,
   };
 
-  const blogDate = new Date(data.blog.createdAt).toLocaleDateString();
+  const blogDate = new Date(data.blog.createdAt);
 
   return (
     <>
       <div className={classes["SingleBlog__header"]}>
-        <div style={styles} className={classes["SingleBlog__coverimage"]} />
+        <h1>{data.blog.title}</h1>
+        <h4>{data.blog.subtitle}</h4>
         <div className={classes["SingleBlog__header-author__image"]}>
           <img alt="Author Image" src={data.blog.author.image.secure_url} />
+          <span>{data.blog.author.name}</span>
+          <span>
+            <button>Follow</button>
+          </span>
         </div>
-
-        <h1>{data.blog.title}</h1>
-        <p className={classes["SingleBlog__header-authorname"]}>
-          By - <span>{data.blog.author.name}</span>
+        <p className={classes["SingleBlog__header-date"]}>
+          {monthNames[blogDate.getMonth()]} , {blogDate.getFullYear()}
         </p>
-        <p className={classes["SingleBlog__header-date"]}>{blogDate}</p>
+        <div style={styles} className={classes["SingleBlog__coverimage"]} />
         <p className={classes["SingleBlog__header-content"]}>
           {data.blog.content}
         </p>
