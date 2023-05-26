@@ -1,20 +1,14 @@
 .SingleBlog__header {
-  /* text-align: center; */
+  text-align: center;
   height: fit-content;
   margin: 0 20%;
   padding-top: 4rem;
   margin-bottom: 4rem;
 }
 
-.SingleBlog__header h4 {
-  padding: 1rem 0;
-  font-weight: 500;
-  color: rgb(224, 210, 210);
-}
 .SingleBlog__coverimage {
   height: 70vh;
   width: 100%;
-  margin-bottom: 4rem;
   background-color: red;
   background-size: cover;
   scroll-behavior: smooth;
@@ -31,31 +25,41 @@
 }
 
 .SingleBlog__header-author__image {
+  position: relative;
   height: fit-content;
+  display: inline-block;
+  top: -3rem;
   background-color: transparent;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin: 1rem 0;
-}
-
-.SingleBlog__header-author__image span {
-  /* padding-left: 1rem; */
-  color: white;
-}
-.SingleBlog__header-author__image span button {
-  background-color: transparent;
-  color: #0468d7;
-  font-size: 1rem;
 }
 
 .SingleBlog__header-author__image img {
   border-radius: 50%;
   border: 1px solid white;
   background-size: contain;
-  height: 3rem;
-  width: 3rem;
+  height: 8rem;
+  width: 8rem;
   overflow: hidden;
+}
+
+
+.SingleBlog__actions{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.SingleBlog__actions h1{
+  flex: 100%;
+}
+
+.SingleBlog__actions-buttons{
+  display: flex;
+  gap: 1rem;
+  z-index: 20;
+  position: relative;
+}
+.SingleBlog__actions-buttons:last-child{
+  cursor: pointer;
 }
 
 .SingleBlog__header-authorname {
@@ -65,23 +69,9 @@
   font-weight: 600;
 }
 
-.SingleBlog__actions {
-  display: flex;
-  justify-content: space-between;
-  border-top: 1px solid rgb(170, 170, 170, 0.1);
-  border-bottom: 1px solid rgb(170, 170, 170, 0.1);
-  padding: 0.5rem;
-}
-
-.SingleBlog__actions .SingleBlog__actions-bookShare {
-  display: flex;
-  gap: 0.5rem;
-}
-
 .SingleBlog__header-date {
-  color: white;
+  color: grey;
   padding: 0.5rem 0;
-  font-style: oblique;
 }
 
 .SingleBlog__header-content {
