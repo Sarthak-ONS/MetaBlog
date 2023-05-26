@@ -200,3 +200,27 @@ exports.bookMark = async (req, res, next) => {
     return next(err);
   }
 };
+
+exports.checkbookMark = async (req, res, next) => {
+  const { blogId } = req.params;
+  const userId = req.userId;
+
+  try {
+    const user = await User.findById(userId);
+
+    let bookMarks = user.bookmarks;
+
+    if (bookMarks.includes(blogId)) {
+      return res.status(200).json({ status: "SUCCESS", message: "BOOKMARKED" });
+    } else {
+      return res
+        .status(200)
+        .json({ status: "SUCCESS", message: "NOT BOOKMARKED" });
+    }
+  } catch (error) {
+    console.log(error);
+    const err = new Error("Failed to bookmark.");
+    err.httpStatusCode = 422;
+    return next(err);
+  }
+};

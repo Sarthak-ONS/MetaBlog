@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import classes from "./SingleBlog.module.css";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useParams, useSubmit } from "react-router-dom";
+import { getAuthToken } from "../../utils/auth";
 
 import {
   BsFillBookmarkFill,
@@ -8,6 +9,7 @@ import {
   BsFillShareFill,
 } from "react-icons/bs";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
+import useHttp from "../../hooks/use-http";
 
 const SingleBlog = () => {
   const [isBookMarked, setIsBookMarked] = useState(false);
@@ -20,11 +22,48 @@ const SingleBlog = () => {
 
   const blogDate = new Date(data.blog.createdAt).toLocaleDateString();
 
-  const bookMarkHandler = () => {};
+  const bookMarkHandler = async () => {
+    console.log("Started bookmarking");
+    const response = await fetch(
+      `http://localhost:4000/blog/${data.blog._id}/bookmark`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+    const d = await response.json();
+    console.log(d);
 
-  // useEffect(() => {
-  //   return () => {};
-  // }, [isBookMarked]);
+    if (d.message === "ADDED TO BOOKMARKS") {
+      setIsBookMarked(true);
+    } else {
+      setIsBookMarked(false);
+    }
+  };
+
+  const { isLoading, error, sendRequest: fetchStatus } = useHttp();
+
+  const token = getAuthToken();
+
+  useEffect(() => {
+    const transformData = (data) => {
+      if (data.message == "BOOKMARKED") {
+        setIsBookMarked(true);
+      }
+    };
+
+    fetchStatus(
+      {
+        url: `http://localhost:4000/blog/${data.blog._id}/bookmark/check`,
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      },
+      transformData
+    );
+  }, [fetchStatus]);
 
   return (
     <>
@@ -38,8 +77,10 @@ const SingleBlog = () => {
           <div></div>
           <h1>{data.blog.title}</h1>
           <div className={classes["SingleBlog__actions-buttons"]}>
-            {isBookMarked && <BsBookmark size={15} />}
-            {!isBookMarked && <BsFillBookmarkFill size={15} />}
+            {isBookMarked && <BsBookmark onClick={bookMarkHandler} size={15} />}
+            {!isBookMarked && (
+              <BsFillBookmarkFill size={15} onClick={bookMarkHandler} />
+            )}
             <BsFillShareFill size={15} />
           </div>
         </div>
