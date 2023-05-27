@@ -98,13 +98,17 @@ const SingleBlog = () => {
         <div className={classes["SingleBlog__actions"]}>
           <div></div>
           <h1>{data.blog.title}</h1>
-          <div className={classes["SingleBlog__actions-buttons"]}>
-            {isBookMarked && <BsBookmark onClick={bookMarkHandler} size={15} />}
-            {!isBookMarked && (
-              <BsFillBookmarkFill size={15} onClick={bookMarkHandler} />
-            )}
-            <BsFillShareFill size={15} />
-          </div>
+          {token && (
+            <div className={classes["SingleBlog__actions-buttons"]}>
+              {isBookMarked && (
+                <BsBookmark onClick={bookMarkHandler} size={15} />
+              )}
+              {!isBookMarked && (
+                <BsFillBookmarkFill size={15} onClick={bookMarkHandler} />
+              )}
+              <BsFillShareFill size={15} />
+            </div>
+          )}
         </div>
         <p className={classes["SingleBlog__header-authorname"]}>
           By - <span>{data.blog.author.name}</span>
@@ -123,7 +127,10 @@ const SingleBlog = () => {
       >
         <Alert
           onClose={handleClose}
-          style={{ backgroundColor: "transparent", boxShadow: "2px 5px 5px white" }}
+          style={{
+            backgroundColor: "transparent",
+            boxShadow: "2px 5px 5px white",
+          }}
           severity="success"
           sx={{ width: "100%" }}
         >
