@@ -118,12 +118,12 @@ const SingleBlog = () => {
       <Snackbar
         open={open}
         autoHideDuration={4000}
-        style={{ backgroundColor: "green" }}
+        style={{ backgroundColor: "transparent" }}
         onClose={handleClose}
       >
         <Alert
           onClose={handleClose}
-          style={{ backgroundColor: "transparent", boxShadow: "" }}
+          style={{ backgroundColor: "transparent", boxShadow: "2px 5px 5px white" }}
           severity="success"
           sx={{ width: "100%" }}
         >
