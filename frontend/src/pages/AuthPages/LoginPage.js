@@ -56,7 +56,6 @@ const LoginPage = () => {
 };
 
 export async function action({ request }) {
-
   const data = await request.formData();
 
   const authData = {
@@ -92,7 +91,9 @@ export async function action({ request }) {
   // const userId = resData.userId;
 
   localStorage.setItem("token", token);
-  // localStorage.setItem("userId", userId);
+  const expirationDate = new Date();
+  expirationDate.setHours(expirationDate.getHours() + 1);
+  localStorage.setItem("expiration", expirationDate.toISOString());
 
   return redirect("/");
 }
