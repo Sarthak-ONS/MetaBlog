@@ -115,10 +115,15 @@ const SingleBlog = () => {
         </p>
       </div>
 
-      <Snackbar open={open} autoHideDuration={4000}   style={{ backgroundColor: "green" }} onClose={handleClose}>
+      <Snackbar
+        open={open}
+        autoHideDuration={4000}
+        style={{ backgroundColor: "green" }}
+        onClose={handleClose}
+      >
         <Alert
           onClose={handleClose}
-          style={{ backgroundColor: "green" }}
+          style={{ backgroundColor: "transparent", boxShadow: "" }}
           severity="success"
           sx={{ width: "100%" }}
         >
