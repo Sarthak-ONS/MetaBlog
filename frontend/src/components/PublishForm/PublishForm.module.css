@@ -1,7 +1,43 @@
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.error__msg {
+  background-color: var(--error-background-Color);
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(255, 0, 0, 0.25);
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+}
+
 .PublishForm {
   --publish-background-Color: #161b22;
   --error-background-Color: #202833;
   padding: 1rem;
+  height: 80vh;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.PublishForm img {
+  width: 70%;
+  align-self: center;
 }
 
 .PublishForm h2 {
@@ -26,15 +62,16 @@
   background-color: #0d1117;
 }
 
-.publish-box .user-box input::placeholder{
-    font-size: 0.75rem;
+.publish-box .user-box input::placeholder {
+  font-size: 0.75rem;
 }
 
 .publish-box .user-box label {
   font-size: 16px;
   color: #fff;
   background-color: transparent;
-  padding-bottom: 1.25rem;
+  padding-bottom: 1.5rem;
+  padding-left: 10px;
 }
 
 .publish-box .user-box label {

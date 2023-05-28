@@ -8,9 +8,6 @@ const EditorComponent = (props) => {
 
   const handleContentChange = (value) => {
     setValue(value);
-
-    console.log("CONTENT IS CHANGING");
-    console.log(value, "///////////////");
   };
 
   const modules = {
