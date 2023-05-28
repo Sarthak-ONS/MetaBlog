@@ -3,6 +3,8 @@ import classes from "./Navbar.module.css";
 import { RiMenu3Line, RiCloseLine, RiOutletFill } from "react-icons/ri";
 import { Form, NavLink, useLoaderData, useNavigate } from "react-router-dom";
 
+import person from "../../assets/person.jpg";
+
 import CustomButton from "../Button/CustomButton";
 
 const Navbar = () => {
@@ -48,6 +50,21 @@ const Navbar = () => {
   const animateNavClass = `${
     !isVisible ? classes["fade-animation"] : classes["fade-animation.show"]
   }`;
+
+  const [loginMenu, setLoginMenu] = useState(false);
+
+  const loginUIHandler = () => {
+    console.log("Login Menu Clicked");
+    if (loginMenu) {
+      setLoginMenu(false);
+    } else {
+      setLoginMenu(true);
+    }
+  };
+
+  const closeLoginUi = () => {
+    setLoginMenu(false);
+  };
 
   return (
     <div className={animateNavClass}>
@@ -115,11 +132,17 @@ const Navbar = () => {
               </div>
             )}
             {token && (
-              <Form action="/logout" method="POST">
-                <button type="submit">Logout</button>
-              </Form>
+              <div className={classes["LoginUI"]}>
+                <img src={person} onClick={loginUIHandler} />
+              </div>
             )}
           </nav>
+
+          {loginMenu && token && (
+            <>
+              <LoginUIMenu onClick={closeLoginUi} />
+            </>
+          )}
 
           <div className={classes["nav__mobile"]}>
             <div className={classes["nav__brand"]}>
@@ -142,6 +165,9 @@ const Navbar = () => {
               )}
             </div>
           </div>
+
+          {/* This is Mobile Nav */}
+
           {toggleMenu && (
             <div className={classes["navbar-menu_container-links"]}>
               <p className={classes["navbar-menu_container-link"]}>
@@ -192,6 +218,26 @@ const Navbar = () => {
           )}
         </>
       )}
+    </div>
+  );
+};
+
+const LoginUIMenu = ({ onClick }) => {
+  const liClickHandler = () => {
+    onClick();
+  };
+
+  return (
+    <div className={classes["LoginUI__container"]}>
+      <ul>
+        <li onClick={liClickHandler}>My Account</li>
+        <li onClick={liClickHandler}>Write a blog</li>
+        <li>
+          <Form action="/logout" method="POST">
+            <button type="submit">Logout</button>
+          </Form>
+        </li>
+      </ul>
     </div>
   );
 };

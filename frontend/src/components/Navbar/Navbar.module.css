@@ -50,6 +50,7 @@ nav {
   flex-direction: column;
   justify-content: center;
   background-color: transparent;
+  margin-right: 2rem;
 }
 
 .nav__links {
@@ -136,4 +137,42 @@ nav {
   .nav__mobile {
     display: flex;
   }
+}
+
+.LoginUI {
+  display: flex;
+}
+
+.LoginUI img {
+  height: 2rem;
+  border-radius: 50%;
+  width: 2rem;
+  background-position: center;
+  background-size: contain;
+}
+
+.LoginUI__container {
+  position: fixed;
+  right: 0;
+  margin: 1rem;
+  margin-top: 0;
+  background-color: #183969;
+  padding: 1rem;
+  border-radius: 5px;
+  z-index: 50;
+}
+
+.LoginUI__container li {
+  background-color: #183969;
+  cursor: pointer;
+  padding: 1rem 0.5rem;
+  padding-bottom: 0.5rem;
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.2); */
+}
+.LoginUI__container li form {
+  background-color: transparent;
+}
+
+.LoginUI__container ul {
+  background-color: #183969;
 }
