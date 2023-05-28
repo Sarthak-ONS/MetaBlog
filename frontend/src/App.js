@@ -12,9 +12,7 @@ import SignupPage, {
   action as SignupAction,
 } from "./pages/AuthPages/SignupPage";
 import CreatorPage from "./pages/CreatorsPage/CreatorPage";
-import WriteBlog, {
-  action as PublishBlogAction,
-} from "./pages/CreatorsPage/WriteBlog";
+import WriteBlog from "./pages/CreatorsPage/WriteBlog";
 
 import { loader as categoryLoader } from "./containers/Category/Category";
 import SingleBlog, { SingleBlogLoader } from "./pages/Blogs/SingleBlog";
@@ -50,7 +48,7 @@ const router = createBrowserRouter([
       {
         path: "blog/new/",
         loader: checkAuthLoader,
-        action: PublishBlogAction,
+        // action: PublishBlogAction,
         element: <WriteBlog />,
       },
       {

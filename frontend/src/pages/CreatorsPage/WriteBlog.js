@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import classes from "./WriteBlogPage.module.css";
 import PublishForm from "../../components/PublishForm/PublishForm";
 
+import { getAuthToken } from "../../utils/auth";
+
 import EditorComponent from "../../components/Editor/EditorComponent";
 import { AiOutlineEdit } from "react-icons/ai";
+import { redirect } from "react-router-dom";
 const WriteBlog = () => {
   const publishClickHandler = (value) => {
     openPublishFormHandler();
@@ -18,10 +21,20 @@ const WriteBlog = () => {
     setShowPublishForm(false);
   };
 
+  const getContent = (value) => {
+    console.log(value);
+    setContent(value);
+  };
+
+  const [content, setContent] = useState("");
+
   return (
     <>
       {showPublishForm && (
-        <PublishForm onClose={closePublishFormHandler}></PublishForm>
+        <PublishForm
+          content={content}
+          onClose={closePublishFormHandler}
+        ></PublishForm>
       )}
       <div className={classes["editor__header"]}>
         <div></div>
@@ -32,46 +45,12 @@ const WriteBlog = () => {
         <button onClick={publishClickHandler}>Publish</button>
       </div>
       <br></br>
-      <EditorComponent onClick={publishClickHandler}></EditorComponent>
+      <EditorComponent
+        onChange={getContent}
+        onClick={publishClickHandler}
+      ></EditorComponent>
     </>
   );
 };
-
-export async function action({ request }) {
-  const data = await request.formData();
-
-  const publishData = {
-    title: data.get("title"),
-    subtitle: data.get("subtitle"),
-    image: data.get("image"),
-    categories: data.get("categories"),
-    tags: data.get("tags"),
-  };
-
-  console.log(publishData);
-
-  // const response = await fetch("http://localhost:4000/blog/new", {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   body: JSON.stringify(authData),
-  // });
-
-  // if (
-  //   response.status === 422 ||
-  //   response.status === 401 ||
-  //   response.status == 404
-  // ) {
-  //   return response;
-  // }
-
-  // if (!response.ok) {
-  //   const data = { message: "Could not authenticate user." };
-  //   throw { isError: true, message: data.message, status: response.status };
-  // }
-
-  // return redirect("/");
-}
 
 export default WriteBlog;

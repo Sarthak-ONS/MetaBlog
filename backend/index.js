@@ -18,7 +18,7 @@ const MONGODB_URI = process.env.MONGODB_URI;
 
 app.use(morgan("tiny"));
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(
@@ -31,7 +31,7 @@ app.use(
     abortOnLimit: true,
     safeFileNames: true,
     limitHandler: (req, res, next) => {
-      const err = new Error("File too large, max 1MB is expected");
+      const err = new Error("File too large, max 10MB is expected");
       err.httpStatusCode = 413;
       return next(err);
     },
@@ -61,11 +61,15 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Methods", "*");
   res.setHeader("Access-Control-Allow-Headers", "*");
-  res.setHeader("Access-Control-Allow-Credentials", true);
+
+  if (req.method == "OPTIONS") {
+    return res.sendStatus(200);
+  }
+
   next();
 });
 

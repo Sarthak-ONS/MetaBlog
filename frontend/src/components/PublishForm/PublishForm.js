@@ -1,22 +1,60 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import classes from "./PublishForm.module.css";
 import Modal from "../Modals/Modal";
 
-import { Form, useActionData, useNavigation } from "react-router-dom";
+import { Form, Navigate, useActionData, useNavigate } from "react-router-dom";
 import Loader from "../Loaders/Loader";
+import { getAuthToken } from "../../utils/auth";
 
 const PublishForm = (props) => {
+  const navigate = useNavigate();
+
   const [image, setImage] = useState();
+  const [imageFile, setImageFile] = useState();
+
+  const titleRef = useRef();
+  const subtitleRef = useRef();
+  const imageRef = useRef();
+  const categoriesRef = useRef();
+  const tagsRef = useRef();
+
+  const publishClickHandler = async () => {
+    setisSubmitting(true);
+    const formData = new FormData();
+
+    formData.append("title", titleRef.current.value);
+    formData.append("subtitle", subtitleRef.current.value);
+    formData.append("content", props.content);
+    formData.append("image", imageFile);
+    formData.append("category", categoriesRef.current.value);
+    formData.append("tags", tagsRef.current.value);
+
+    const token = getAuthToken();
+    const response = await await fetch("http://localhost:4000/blog/new", {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + token,
+        // "Content-Type": "multipart/form-data",
+      },
+      body: formData,
+    });
+
+    if (response.ok) {
+      setisSubmitting(false);
+      props.onClose();
+      return navigate("/");
+    }
+    setisSubmitting(false);
+  };
 
   const handleImageChange = (e) => {
-    console.log(e.target.files);
+    setImageFile(e.target.files[0]);
     setImage(URL.createObjectURL(e.target.files[0]));
   };
 
   const data = useActionData();
-  const navigation = useNavigation();
 
-  const isSubmitting = navigation.state === "submitting";
+  const [isSubmitting, setisSubmitting] = useState(false);
 
   const closeHandler = () => {
     console.log("CLOSING MODAL");
@@ -33,53 +71,50 @@ const PublishForm = (props) => {
         {data && data.status === "ERROR" && (
           <p className={classes["error__msg"]}>{data.errorMessage}</p>
         )}
-        <Form className={classes["publish-box"]} method="POST" typeof="">
+        <Form className={classes["publish-box"]} typeof="">
           <div className={classes["user-box"]}>
             <label htmlFor="title">Title</label>
-            <input
-              required
-              name="title"
-              defaultValue={"This is a title"}
-              type="text"
-            />
+            <input required name="title" type="text" ref={titleRef} />
           </div>
           <div className={classes["user-box"]}>
             <label htmlFor="subtitle">Subtitle</label>
-            <input
-              required
-              name="subtitle"
-              type="text"
-              defaultValue={"This is a subtitle"}
-            />
+            <input required name="subtitle" type="text" ref={subtitleRef} />
           </div>
           <div className={classes["user-box"]}>
             <label htmlFor="image">Image</label>
-            <input onChange={handleImageChange} name="image" type="file" />
-            <img src={image}></img>
+            <input
+              onChange={handleImageChange}
+              name="image"
+              required
+              type="file"
+              ref={imageRef}
+            />
+
+            {image && <img src={image}></img>}
           </div>
           <div className={classes["user-box"]}>
             <label htmlFor="categories">Categories</label>
             <input
               placeholder="Separated by Commas"
-              // required
+              required
               name="categories"
               type="text"
-              defaultValue={"technology"}
+              ref={categoriesRef}
             />
           </div>
           <div className={classes["user-box"]}>
             <label htmlFor="tags">Tags</label>
             <input
               placeholder="Separated by Commas"
-              // required
+              required
               name="tags"
               type="text"
-              defaultValue={"react, javascript"}
+              ref={tagsRef}
             />
           </div>
           {isSubmitting && <Loader />}
           {!isSubmitting && (
-            <button disabled={isSubmitting} type="submit">
+            <button onClick={publishClickHandler} type="button">
               Publish
             </button>
           )}

@@ -8,6 +8,7 @@ const EditorComponent = (props) => {
 
   const handleContentChange = (value) => {
     setValue(value);
+    props.onChange(value);
   };
 
   const modules = {
