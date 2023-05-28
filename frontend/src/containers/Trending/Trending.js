@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./Trending.module.css";
 import { AiOutlineBranches } from "react-icons/ai";
 
 import BlogCard from "../../components/BlogCard/BlogCard";
+import useHttp from "../../hooks/use-http";
 
 const DUMMY_BLOG = [
   {
@@ -41,27 +42,41 @@ const DUMMY_BLOG = [
     imageUrl:
       "https://images.pexels.com/photos/3862132/pexels-photo-3862132.jpeg",
   },
-  // {
-  //   index: 5,
-  //   authorName: "Prajwal Choudhary",
-  //   title: "Notes from the underground",
-  //   dateText: "May 11",
-  //   readTimeText: "2 min read",
-  //   imageUrl:
-  //     "https://images.pexels.com/photos/3970330/pexels-photo-3970330.jpeg",
-  // },
-  // {
-  //   index: 6,
-  //   authorName: "Sarvesh Algoia",
-  //   title: "Zero to One",
-  //   dateText: "May 9",
-  //   readTimeText: "10 min read",
-  //   imageUrl:
-  //     "https://images.pexels.com/photos/2156/sky-earth-space-working.jpg",
-  // },
 ];
 
 const Trending = () => {
+  const [blogs, setBlogs] = useState([]);
+
+  const { isLoading, error, sendRequest: fetchBlogs } = useHttp();
+
+  useEffect(() => {
+    const transformBlogs = ({ blogs }) => {
+      const loadedBlogs = [];
+
+      console.log(blogs);
+
+      blogs.forEach((item) => {
+        loadedBlogs.push({
+          index: item._id,
+          id: item._id,
+          authorName: item.author.name,
+          title: item.title,
+          readTimeText: item.readTime,
+          imageUrl: item.image.secure_url,
+          dateText: "May 9",
+        });
+      });
+      setBlogs(loadedBlogs);
+    };
+
+    fetchBlogs(
+      {
+        url: "http://localhost:4000/blog/",
+      },
+      transformBlogs
+    );
+  }, [fetchBlogs]);
+
   return (
     <div className={classes["trending"]}>
       <p>
@@ -76,22 +91,18 @@ const Trending = () => {
       <br></br>
       <br></br>
       <div className={classes["blog-grid"]}>
-        {DUMMY_BLOG.map(
-          ({ index, authorName, title, readTimeText, dateText, imageUrl }) => (
+        {blogs.map(
+          ({
+            index,
+            id,
+            authorName,
+            title,
+            readTimeText,
+            dateText,
+            imageUrl,
+          }) => (
             <BlogCard
-              key={index}
-              imageUrl={imageUrl}
-              index={index}
-              authorName={authorName}
-              title={title}
-              dateText={dateText}
-              readTimeText={readTimeText}
-            ></BlogCard>
-          )
-        )}
-        {DUMMY_BLOG.map(
-          ({ index, authorName, title, readTimeText, dateText, imageUrl }) => (
-            <BlogCard
+              id={id}
               key={index}
               imageUrl={imageUrl}
               index={index}

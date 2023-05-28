@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 const BlogCard = ({
+  id,
   index,
   authorName,
   title,
@@ -14,8 +15,7 @@ const BlogCard = ({
   const navigate = useNavigate();
 
   const buttonClickHandler = () => {
-    index = "646f923644c5f1288f59a941";
-    navigate(`/blog/${index}`);
+    navigate(`/blog/${id}`);
   };
 
   return (
