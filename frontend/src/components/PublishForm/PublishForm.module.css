@@ -1,0 +1,74 @@
+.PublishForm {
+  --publish-background-Color: #161b22;
+  --error-background-Color: #202833;
+  padding: 1rem;
+}
+
+.PublishForm h2 {
+  margin-bottom: 1rem;
+}
+
+.-bopublishx .user-box {
+  /* position: relative; */
+  background: var(--publish-background-Color);
+}
+
+.publish-box .user-box input {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border: 0.5px solid #3d3b3b;
+  border-radius: 10px;
+  outline: none;
+  background-color: #0d1117;
+}
+
+.publish-box .user-box input::placeholder{
+    font-size: 0.75rem;
+}
+
+.publish-box .user-box label {
+  font-size: 16px;
+  color: #fff;
+  background-color: transparent;
+  padding-bottom: 1.25rem;
+}
+
+.publish-box .user-box label {
+  /* position: absolute; */
+  font-size: 16px;
+  color: #fff;
+  background-color: transparent;
+  padding-bottom: 1.25rem;
+}
+
+.publish-box .user-box input:focus ~ label,
+.publish-box .user-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: #fff;
+  font-size: 12px;
+}
+
+.publish-box button {
+  position: relative;
+  padding: 5px 20px;
+  font-weight: 400;
+  color: #fff;
+  font-size: 16px;
+  text-decoration: none;
+  overflow: hidden;
+  transition: 0.5s;
+  background-color: orangered;
+  /* vertical-align: middle; */
+  margin-bottom: 1rem;
+}
+
+.publish-box button:hover {
+  background: #fff;
+  color: #272727;
+  border-radius: 5px;
+}

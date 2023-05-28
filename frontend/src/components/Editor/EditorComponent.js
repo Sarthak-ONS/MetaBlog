@@ -6,9 +6,11 @@ import classes from "./EditorComponent.module.css";
 const EditorComponent = (props) => {
   const [value, setValue] = useState("");
 
-  const handleContentChange = ({}) => {
+  const handleContentChange = (value) => {
     setValue(value);
-    console.log(value);
+
+    console.log("CONTENT IS CHANGING");
+    console.log(value, "///////////////");
   };
 
   const modules = {
