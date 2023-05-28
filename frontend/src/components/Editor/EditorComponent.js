@@ -6,9 +6,9 @@ import classes from "./EditorComponent.module.css";
 const EditorComponent = (props) => {
   const [value, setValue] = useState("");
 
-  const handleContentChange = (vv) => {
-    console.log(value);
+  const handleContentChange = ({}) => {
     setValue(value);
+    console.log(value);
   };
 
   const modules = {
@@ -37,7 +37,6 @@ const EditorComponent = (props) => {
   const styles = {
     height: "100%",
     width: "100%",
-    backgroundColor: "red",
     color: "white",
   };
 

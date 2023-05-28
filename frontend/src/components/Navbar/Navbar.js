@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import classes from "./Navbar.module.css";
 import { RiMenu3Line, RiCloseLine, RiOutletFill } from "react-icons/ri";
-import { Form, NavLink, useLoaderData, useNavigate } from "react-router-dom";
+import {
+  Form,
+  NavLink,
+  redirect,
+  useLoaderData,
+  useNavigate,
+} from "react-router-dom";
 
 import person from "../../assets/person.jpg";
 
@@ -223,15 +229,23 @@ const Navbar = () => {
 };
 
 const LoginUIMenu = ({ onClick }) => {
+  const navigation = useNavigate();
+
   const liClickHandler = () => {
+    return navigation("/blog/new");
+  };
+  
+  const createNewBlog = () => {
+    console.log("INIT NEW BLOG");
     onClick();
+    return navigation("/blog/new");
   };
 
   return (
     <div className={classes["LoginUI__container"]}>
       <ul>
         <li onClick={liClickHandler}>My Account</li>
-        <li onClick={liClickHandler}>Write a blog</li>
+        <li onClick={createNewBlog}>Write a blog</li>
         <li>
           <Form action="/logout" method="POST">
             <button type="submit">Logout</button>
