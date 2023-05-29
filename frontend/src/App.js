@@ -25,6 +25,7 @@ import { checkAuthLoader, tokenLoader } from "./utils/auth";
 import ForgotPasswordForm, {
   action as ForgotPasswordFormAction,
 } from "./pages/AuthPages/ForgotPasswordForm";
+import Blogs from "./pages/Blogs/Blogs";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "blog",
         element: <BlogPage />,
+      },
+      {
+        path: "blogs",
+        element: <Blogs />,
       },
       {
         path: "blog/:blogId",

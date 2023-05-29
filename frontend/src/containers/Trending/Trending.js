@@ -5,44 +5,6 @@ import { AiOutlineBranches } from "react-icons/ai";
 import BlogCard from "../../components/BlogCard/BlogCard";
 import useHttp from "../../hooks/use-http";
 
-const DUMMY_BLOG = [
-  {
-    index: 1,
-    authorName: "Sarthak Agarwal",
-    title: "How to win friends",
-    dateText: "May 5",
-    readTimeText: "5 min read",
-    imageUrl:
-      "https://images.pexels.com/photos/7562114/pexels-photo-7562114.jpeg",
-  },
-  {
-    index: 2,
-    authorName: "Samarth Powell",
-    title: "Attitude is Everything",
-    dateText: "May 9",
-    readTimeText: "2 min read",
-    imageUrl:
-      "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg",
-  },
-  {
-    index: 3,
-    authorName: "Deepak Rajpoot",
-    title: "Sophia - A disturb girl",
-    dateText: "May 9",
-    readTimeText: "2 min read",
-    imageUrl:
-      "https://images.pexels.com/photos/2156/sky-earth-space-working.jpg",
-  },
-  {
-    index: 4,
-    authorName: "Priyansh Reddy",
-    title: "Licking Ass - Ultimate Guide",
-    dateText: "May 9",
-    readTimeText: "2 min read",
-    imageUrl:
-      "https://images.pexels.com/photos/3862132/pexels-photo-3862132.jpeg",
-  },
-];
 
 const Trending = () => {
   const [blogs, setBlogs] = useState([]);

@@ -12,18 +12,37 @@ const categories = [
   { index: 5, name: "Photography" },
   { index: 6, name: "Business" },
   { index: 7, name: "Movie" },
-  { index: 8, name: "Political" },
-  { index: 9, name: "Religion" },
-  { index: 10, name: "Book writing" },
-  { index: 11, name: "Web Development" },
-  { index: 12, name: "App Development" },
-  { index: 13, name: "Flutter" },
-  { index: 14, name: "ReactJS" },
-  { index: 15, name: "NodeJS" },
+  { index: 8, name: "Religion" },
+  { index: 9, name: "Book writing" },
+  { index: 10, name: "Technology" },
 ];
 
 exports.getCategories = async (req, res, next) => {
   res.status(200).json({ status: "SUCCESS", categories });
+};
+
+exports.getBlogs = async (req, res, next) => {
+  try {
+    const { category } = req.query;
+    let blogs;
+    if (category === "all") {
+      blogs = await Blog.find({}).populate("author", ["name"]);
+    } else if (category) {
+      blogs = await Blog.find({
+        category: { $in: category.toLowerCase() },
+      }).populate("author", ["name"]);
+    } else {
+      blogs = await Blog.find({}).populate("author", ["name"]).limit(6);
+    }
+    res
+      .status(200)
+      .json({ status: "SUCCESS", message: "Blog Sent Successfully!", blogs });
+  } catch (error) {
+    console.log(error);
+    const err = new Error("Failed to get blogs");
+    err.httpStatusCode = 422;
+    return next(err);
+  }
 };
 
 exports.getSingleBlog = async (req, res, next) => {
@@ -88,15 +107,25 @@ exports.createNewBlog = async (req, res, next) => {
       },
     });
 
-    console.log(req.userId, "////////*********");
+    // let modifiedCategories = [];
+
+    // let modifiedTags = [];
+
+    // category.forEach((item) => {
+    //   modifiedCategories.push(item.toLowerCase());
+    // });
+
+    // tags.forEach((item) => {
+    //   modifiedTags.push(item.toLowerCase());
+    // });
 
     const blog = new Blog({
       title,
       subtitle,
       content,
       readTime,
-      category: [category],
-      tags: [tags],
+      category: [category.toLowerCase()],
+      tags: [tags.toLowerCase()],
       image: {
         id: result.public_id,
         secure_url: result.secure_url,
@@ -143,19 +172,6 @@ exports.deleteSingleBlog = async (req, res, next) => {
   } catch (error) {
     console.log(error);
     const err = new Error("Failed to delete blog");
-    err.httpStatusCode = 422;
-    return next(err);
-  }
-};
-
-exports.getBlogs = async (req, res, next) => {
-  try {
-    const blogs = await Blog.find().populate("author", ["name", "image"]);
-    res
-      .status(200)
-      .json({ status: "SUCCESS", message: "Blog Sent Successfully!", blogs });
-  } catch (error) {
-    const err = new Error("Failed to get blogs");
     err.httpStatusCode = 422;
     return next(err);
   }

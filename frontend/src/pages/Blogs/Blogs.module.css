@@ -1,0 +1,32 @@
+.Blogs__container {
+  margin-top: 1rem;
+
+  padding-top: 5rem;
+}
+
+.blog-grid {
+  margin-top: 5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  grid-area: auto;
+}
+
+select {
+  margin-left: 3rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+
+select option{
+  margin: 1rem;
+}
+
+@media (max-width: 550px) {
+  .blog-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

@@ -24,6 +24,16 @@
   /* padding-top: 70vh; */
 }
 
+.SingleBlog__actions-headings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.SingleBlog__actions-headings h5{
+  font-weight: 500;
+  padding: 1rem 0;
+}
+
 .SingleBlog__header-author__image {
   position: relative;
   height: fit-content;
@@ -41,24 +51,23 @@
   overflow: hidden;
 }
 
-
-.SingleBlog__actions{
+.SingleBlog__actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.SingleBlog__actions h1{
+.SingleBlog__actions h1 {
   flex: 100%;
 }
 
-.SingleBlog__actions-buttons{
+.SingleBlog__actions-buttons {
   display: flex;
   gap: 1rem;
   z-index: 20;
   position: relative;
 }
-.SingleBlog__actions-buttons:last-child{
+.SingleBlog__actions-buttons:last-child {
   cursor: pointer;
 }
 

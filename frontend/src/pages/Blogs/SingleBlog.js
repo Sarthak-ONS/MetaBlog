@@ -97,7 +97,10 @@ const SingleBlog = () => {
 
         <div className={classes["SingleBlog__actions"]}>
           <div></div>
-          <h1>{data.blog.title}</h1>
+          <div className={classes['SingleBlog__actions-headings']}>
+            <h1>{data.blog.title}</h1>
+            <h5>{data.blog.subtitle}</h5>
+          </div>
           {token && (
             <div className={classes["SingleBlog__actions-buttons"]}>
               {isBookMarked && (

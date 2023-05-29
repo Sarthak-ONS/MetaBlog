@@ -3,13 +3,7 @@ import classes from "./LoginPage.module.css";
 
 import Loader from "../../components/Loaders/Loader";
 
-import {
-  Form,
-  NavLink,
-  redirect,
-  useActionData,
-  useNavigation,
-} from "react-router-dom";
+import { Form, NavLink, useActionData, useNavigation } from "react-router-dom";
 
 const ForgotPassword = () => {
   const data = useActionData();

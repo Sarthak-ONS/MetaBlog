@@ -78,7 +78,7 @@ app.use("/blog", blogRoutes);
 
 app.use((error, req, res, next) => {
   console.log(error);
-  return res.status(error.httpStatusCode).json({
+  return res.status(error.httpStatusCode | 500).json({
     status: "ERROR",
     errorMessage: error.message,
     errorStatusCode: error.httpStatusCode,

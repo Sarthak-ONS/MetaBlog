@@ -25,7 +25,7 @@ router.post(
     body("tags").trim().isLength({ min: 2 }).withMessage("Invalid Tags"),
     body("category")
       .trim()
-      .isLength({ min: 2 })
+      .isLength({ min: 1 })
       .withMessage("Invalid Categories"),
   ],
   blogControllers.createNewBlog
