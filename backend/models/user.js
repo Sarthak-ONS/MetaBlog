@@ -1,3 +1,5 @@
+const crypto = require("crypto");
+
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
@@ -37,5 +39,17 @@ const userSchema = new Schema(
   },
   { timestamps: true }
 );
+
+userSchema.methods.getForgotPasswordToken = function () {
+  const forgotToken = crypto.randomBytes(30).toString("hex");
+  this.resetToken = crypto
+    .createHash("sha256")
+    .update(forgotToken)
+    .digest("hex");
+
+  this.resetTokenExpiration = Date.now() + 20 * 60 * 1000;
+
+  return forgotToken;
+};
 
 module.exports = mongoose.model("User", userSchema);
