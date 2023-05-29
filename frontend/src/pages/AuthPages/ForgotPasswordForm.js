@@ -1,17 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import classes from "./LoginPage.module.css";
-import {
-  Form,
-  NavLink,
-  redirect,
-  useActionData,
-  useNavigation,
-} from "react-router-dom";
 
 import Loader from "../../components/Loaders/Loader";
 
-const LoginPage = () => {
+import { Form, useActionData, useNavigation } from "react-router-dom";
+
+const ForgotPasswordForm = () => {
   const data = useActionData();
+
+  console.log(data, "This is data for forgot Password");
+
   const navigation = useNavigation();
 
   const isSubmitting = navigation.state === "submitting";
@@ -19,7 +17,10 @@ const LoginPage = () => {
   return (
     <div className={classes["login__container"]}>
       <div className={classes["login-box"]}>
-        <p>Login to MetaBlog</p>
+        <p>Changed Password</p>
+        {data && data.status === "SUCCESS" && (
+          <p>Password is Changed Successfully!</p>
+        )}
         {data && data.errors && data.errors && (
           <p className={classes["error__msg"]}>{data.errors.msg}</p>
         )}
@@ -27,10 +28,6 @@ const LoginPage = () => {
           <p className={classes["error__msg"]}>{data.errorMessage}</p>
         )}
         <Form method="POST">
-          <div className={classes["user-box"]}>
-            <label htmlFor="email">Email</label>
-            <input required name="email" type="text" />
-          </div>
           <div className={classes["user-box"]}>
             <label htmlFor="password">Password</label>
             <input required name="password" type="password" />
@@ -43,37 +40,31 @@ const LoginPage = () => {
             </button>
           )}
         </Form>
-        <p className={classes["forgotPassword"]}>
-          <NavLink to="/auth/forgot" className={classes["a2"]}>
-            Forgot Password?
-          </NavLink>
-        </p>
-        <p>
-          Don't have an account?{" "}
-          <NavLink to="/auth/signup" className={classes["a2"]}>
-            Sign up!
-          </NavLink>
-        </p>
       </div>
     </div>
   );
 };
 
-export async function action({ request }) {
+export async function action({ request, params }) {
   const data = await request.formData();
 
+  console.log(params);
+  const token = params.token;
+
   const authData = {
-    email: data.get("email"),
     password: data.get("password"),
   };
 
-  const response = await fetch("http://localhost:4000/auth/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(authData),
-  });
+  const response = await fetch(
+    "http://localhost:4000/auth/password/reset/" + token,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(authData),
+    }
+  );
 
   if (
     response.status === 422 ||
@@ -84,19 +75,11 @@ export async function action({ request }) {
   }
 
   if (!response.ok) {
-    const data = { message: "Could not authenticate user." };
+    const data = { message: "Could not request forgot Password." };
     throw { isError: true, message: data.message, status: response.status };
   }
 
-  const resData = await response.json();
-  const token = resData.token;
-
-  localStorage.setItem("token", token);
-  const expirationDate = new Date();
-  expirationDate.setHours(expirationDate.getHours() + 1);
-  localStorage.setItem("expiration", expirationDate.toISOString());
-
-  return redirect("/");
+  return response;
 }
 
-export default LoginPage;
+export default ForgotPasswordForm;

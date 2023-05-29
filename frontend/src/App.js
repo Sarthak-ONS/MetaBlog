@@ -8,6 +8,10 @@ import ErrorPage from "./pages/ErrorPage";
 import AboutPage from "./pages/AbooutPage";
 import BlogPage from "./pages/BlogPage";
 import LoginPage, { action as LoginAction } from "./pages/AuthPages/LoginPage";
+import ForgotPassword, {
+  action as ForgotPasswordAction,
+} from "./pages/AuthPages/ForgotPassword";
+
 import SignupPage, {
   action as SignupAction,
 } from "./pages/AuthPages/SignupPage";
@@ -18,6 +22,9 @@ import { loader as categoryLoader } from "./containers/Category/Category";
 import SingleBlog, { SingleBlogLoader } from "./pages/Blogs/SingleBlog";
 import { action as LogoutAction } from "./pages/Logout";
 import { checkAuthLoader, tokenLoader } from "./utils/auth";
+import ForgotPasswordForm, {
+  action as ForgotPasswordFormAction,
+} from "./pages/AuthPages/ForgotPasswordForm";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +71,16 @@ const router = createBrowserRouter([
         path: "auth/signup",
         element: <SignupPage />,
         action: SignupAction,
+      },
+      {
+        path: "auth/forgot",
+        action: ForgotPasswordAction,
+        element: <ForgotPassword />,
+      },
+      {
+        path: "/auth/password/reset/:token",
+        element: <ForgotPasswordForm />,
+        action: ForgotPasswordFormAction,
       },
       {
         path: "/logout",
