@@ -2,15 +2,13 @@ import React, { useState, useEffect } from "react";
 import classes from "./Blogs.module.css";
 import useHttp from "../../hooks/use-http";
 import BlogCard from "../../components/BlogCard/BlogCard";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [categories, setCategories] = useState([]);
 
   const location = useLocation();
-
-  console.log(location, "Data coming from location");
 
   const [category, setCategory] = useState("All");
   const { sendRequest: fetchBlogs } = useHttp();
@@ -67,6 +65,12 @@ const Blogs = () => {
       transformCategories
     );
   }, [fetchCategories]);
+
+  useEffect(() => {
+    if (location.state != null) {
+      setCategory(location.state.name);
+    }
+  }, []);
 
   return (
     <div className={classes["Blogs__container"]}>

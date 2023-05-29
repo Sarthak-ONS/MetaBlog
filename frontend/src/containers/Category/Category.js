@@ -48,7 +48,7 @@ const CategoriesGrid = () => {
   const cardClickHandler = (index, name) => {
     console.log("CATEGORIES CLICKED");
     console.log(index, name);
-    navigate("/blogs", { name: name });
+    navigate("/blogs", { state: { name } });
   };
 
   return (

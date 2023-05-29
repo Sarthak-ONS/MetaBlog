@@ -7,7 +7,6 @@ const nodemailer = require("nodemailer");
 const { validationResult } = require("express-validator");
 
 const User = require("../models/user");
-const { default: sendMail } = require("../utils/email-util");
 
 let transporter = nodemailer.createTransport({
   service: "hotmail",
@@ -16,6 +15,23 @@ let transporter = nodemailer.createTransport({
     pass: "hercules7@7",
   },
 });
+
+exports.getUserProfile = async (req, res, next) => {
+  try {
+    const userId = req.userId;
+
+    const user = await User.findById(userId);
+
+    user.password = undefined;
+
+    return res.status(200).json({ status: "SUCCESS", user });
+  } catch (error) {
+    console.log(error);
+    const err = new Error("Could not get Profile");
+    err.httpStatusCode = 500;
+    return next(error);
+  }
+};
 
 exports.signup = async (req, res, next) => {
   try {

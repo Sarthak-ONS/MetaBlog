@@ -17,7 +17,7 @@ import SignupPage, {
 } from "./pages/AuthPages/SignupPage";
 import CreatorPage from "./pages/CreatorsPage/CreatorPage";
 import WriteBlog from "./pages/CreatorsPage/WriteBlog";
-
+import ProfilePage from "./pages/AuthPages/ProfilePage";
 import { loader as categoryLoader } from "./containers/Category/Category";
 import SingleBlog, { SingleBlogLoader } from "./pages/Blogs/SingleBlog";
 import { action as LogoutAction } from "./pages/Logout";
@@ -39,6 +39,10 @@ const router = createBrowserRouter([
         index: true,
         element: <HomePage />,
         loader: categoryLoader,
+      },
+      {
+        path: "profile",
+        element: <ProfilePage />,
       },
       {
         path: "about",

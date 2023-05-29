@@ -232,9 +232,10 @@ const LoginUIMenu = ({ onClick }) => {
   const navigation = useNavigate();
 
   const liClickHandler = () => {
-    return navigation("/blog/new");
+    onClick();
+    return navigation("profile");
   };
-  
+
   const createNewBlog = () => {
     console.log("INIT NEW BLOG");
     onClick();
