@@ -4,7 +4,7 @@ import classes from "./Category.module.css";
 import CategoryCard from "../../components/CategoryCard/CategoryCard";
 
 import { AiOutlineBranches } from "react-icons/ai";
-import { json, useLoaderData } from "react-router-dom";
+import { json, useLoaderData, useNavigate } from "react-router-dom";
 
 const Category = () => {
   return (
@@ -29,6 +29,8 @@ const Category = () => {
 const CategoriesGrid = () => {
   const data = useLoaderData();
 
+  const navigate = useNavigate();
+
   const styles = {
     color: "white",
     backgroundColor: "transparent",
@@ -43,10 +45,20 @@ const CategoriesGrid = () => {
 
   const categories = data.categories;
 
+  const cardClickHandler = (index, name) => {
+    console.log("CATEGORIES CLICKED");
+    console.log(index, name);
+    navigate("/blogs", { name: name });
+  };
+
   return (
     <div className={classes["category__grid"]}>
       {categories.map((item) => (
-        <CategoryCard key={item.index} name={item.name}></CategoryCard>
+        <CategoryCard
+          key={item.index}
+          name={item.name}
+          onClick={cardClickHandler.bind(null, item.index, item.name)}
+        ></CategoryCard>
       ))}
     </div>
   );

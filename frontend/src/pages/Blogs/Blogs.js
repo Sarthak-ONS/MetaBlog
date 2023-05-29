@@ -2,14 +2,17 @@ import React, { useState, useEffect } from "react";
 import classes from "./Blogs.module.css";
 import useHttp from "../../hooks/use-http";
 import BlogCard from "../../components/BlogCard/BlogCard";
-
+import { useLocation } from "react-router-dom";
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [categories, setCategories] = useState([]);
 
-  const [category, setCategory] = useState("food");
+  const location = useLocation();
 
+  console.log(location, "Data coming from location");
+
+  const [category, setCategory] = useState("All");
   const { sendRequest: fetchBlogs } = useHttp();
   const { sendRequest: fetchCategories } = useHttp();
 
@@ -69,6 +72,9 @@ const Blogs = () => {
     <div className={classes["Blogs__container"]}>
       <div>
         <select onChange={categoriesChangeHandler}>
+          <option name={"All"} key={0} value={"All"}>
+            All
+          </option>
           {categories.map((item) => (
             <option key={item.index} value={item.index} name={item.name}>
               {item.name}

@@ -25,7 +25,7 @@ exports.getBlogs = async (req, res, next) => {
   try {
     const { category } = req.query;
     let blogs;
-    if (category === "all") {
+    if (category === "All") {
       blogs = await Blog.find({}).populate("author", ["name"]);
     } else if (category) {
       blogs = await Blog.find({
