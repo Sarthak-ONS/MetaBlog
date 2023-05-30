@@ -27,6 +27,14 @@ const EditBlog = () => {
     console.log(updatedContentData);
   };
 
+  const handleImageChange = (e) => {
+    console.log(e);
+  };
+
+  const imageClickHandler = () => {
+    document.getElementById("image-input").click();
+  };
+
   return (
     <div className={classes["EditPage"]}>
       <div className={classes["update-box"]}>
@@ -80,7 +88,10 @@ const EditBlog = () => {
 
             <div className={classes["c1-c2"]}>
               <p>Tap to edit image</p>
-              <img src={loaderdata.blog.image.secure_url}></img>
+              <img
+                onClick={imageClickHandler}
+                src={loaderdata.blog.image.secure_url}
+              ></img>
             </div>
           </div>
           <EditorComponent
@@ -95,6 +106,12 @@ const EditBlog = () => {
               </button>
             )}
           </div>
+          <input
+            type="file"
+            id="image-input"
+            style={{ display: "none" }}
+            onChange={handleImageChange}
+          />
         </Form>
       </div>
     </div>
