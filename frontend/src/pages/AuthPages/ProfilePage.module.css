@@ -66,11 +66,6 @@ input {
   border-radius: 2rem;
 }
 
-button {
-  background-color: orangered;
-  margin: 3rem 0;
-}
-
 @media (max-width: 650px) {
   .Profile__Page {
     flex-direction: column;
