@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import classes from "./SingleBlog.module.css";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { getAuthToken } from "../../utils/auth";
 
 import Snackbar from "@mui/material/Snackbar";
@@ -14,11 +14,14 @@ import {
   BsFillShareFill,
 } from "react-icons/bs";
 
+import { FiEdit2 } from "react-icons/fi";
+
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
 const SingleBlog = () => {
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
@@ -65,6 +68,10 @@ const SingleBlog = () => {
     }
   };
 
+  const editButtonHandler = () => {
+    navigate("/blog/edit/" + data.blog._id);
+  };
+
   const { isLoading, error, sendRequest: fetchStatus } = useHttp();
 
   const token = getAuthToken();
@@ -97,19 +104,20 @@ const SingleBlog = () => {
 
         <div className={classes["SingleBlog__actions"]}>
           <div></div>
-          <div className={classes['SingleBlog__actions-headings']}>
+          <div className={classes["SingleBlog__actions-headings"]}>
             <h1>{data.blog.title}</h1>
             <h5>{data.blog.subtitle}</h5>
           </div>
           {token && (
             <div className={classes["SingleBlog__actions-buttons"]}>
-              {isBookMarked && (
+              {!isBookMarked && (
                 <BsBookmark onClick={bookMarkHandler} size={15} />
               )}
-              {!isBookMarked && (
+              {isBookMarked && (
                 <BsFillBookmarkFill size={15} onClick={bookMarkHandler} />
               )}
               <BsFillShareFill size={15} />
+              <FiEdit2 onClick={editButtonHandler} size={15} />
             </div>
           )}
         </div>

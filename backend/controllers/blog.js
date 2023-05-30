@@ -148,6 +148,82 @@ exports.createNewBlog = async (req, res, next) => {
   }
 };
 
+exports.updateBlog = async (req, res, next) => {
+  const { blogId } = req.params;
+
+  const { title, subtitle, content, tags, category } = req.body;
+
+  try {
+    const blog = Blog.findById(blogId);
+
+    if (!blog) {
+      const err = new Error("Blog not found");
+      err.httpStatusCode = 404;
+      return next(err);
+    }
+
+    if (blog.author.toString() !== req.userId) {
+      const err = new Error("You are not authorized to update this blog");
+      err.httpStatusCode = 401;
+      return next(err);
+    }
+    if (!title && !subtitle && !content && !tags && !category && !req.files) {
+      res.status(200).json({ status: "SUCCESS", message: "Nothing to Update" });
+    }
+
+    let file = req.files.image;
+
+    const readTime =
+      parseInt((content.split(" ").length / 200).toString()) <= 0
+        ? 1
+        : parseInt((content.split(" ").length / 200).toString()) + " min read";
+    let result;
+    if (req.files) {
+      result = await cloudinary.v2.uploader.upload(file.tempFilePath, {
+        folder: "blogs",
+        unique_filenfame: true,
+        transformation: {
+          responsive: true,
+          width: "auto",
+          crop: "crop",
+          aspect_ratio: 16 / 9,
+        },
+      });
+    }
+
+    if (title) {
+      blog.title = title;
+    }
+    if (subtitle) {
+      blog.subtitle = subtitle;
+    }
+    if (req.files) {
+      const uploadedImage = {
+        id: result.public_id,
+        secure_url: result.secure_url,
+      };
+      blog.image = uploadedImage;
+    }
+
+    if (tags) {
+      blog.tags = [tags.toLowerCase()];
+    }
+    if (category) {
+      blog.category = [category.toLowerCase()];
+    }
+    await blog.save();
+
+    res
+      .status(200)
+      .json({ status: "SUCCESS", message: "Blog updated successfully!" });
+  } catch (error) {
+    console.log(error);
+    const err = new Error("Could not Update Blog");
+    err.httpStatusCode = 401;
+    return next(err);
+  }
+};
+
 exports.deleteSingleBlog = async (req, res, next) => {
   const { blogId } = req.params;
   console.log(blogId);

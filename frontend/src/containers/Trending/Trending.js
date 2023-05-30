@@ -5,7 +5,6 @@ import { AiOutlineBranches } from "react-icons/ai";
 import BlogCard from "../../components/BlogCard/BlogCard";
 import useHttp from "../../hooks/use-http";
 
-
 const Trending = () => {
   const [blogs, setBlogs] = useState([]);
 
@@ -14,8 +13,6 @@ const Trending = () => {
   useEffect(() => {
     const transformBlogs = ({ blogs }) => {
       const loadedBlogs = [];
-
-      console.log(blogs);
 
       blogs.forEach((item) => {
         loadedBlogs.push({

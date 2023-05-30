@@ -1,0 +1,32 @@
+.EditPage {
+  padding: 4rem;
+  padding-top: 8rem;
+  height: fit-content;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.c1 {
+  margin: 1rem;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.c1-c1 {
+  flex: 0.5;
+}
+.c1-c2 {
+  flex: 0.5;
+}
+.c1-c2 img {
+  width: 100%;
+  cursor: pointer;
+}
+.c1-c2 p {
+  padding-bottom: 0.5rem;
+  text-align: center;
+}

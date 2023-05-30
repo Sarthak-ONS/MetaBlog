@@ -1,11 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import classes from "./EditorComponent.module.css";
+import { useLocation } from "react-router-dom";
 
 const EditorComponent = (props) => {
+  const location = useLocation();
+
+  const preFilledData = location.state;
+
+  console.log(preFilledData);
+
   const [value, setValue] = useState("");
 
+  useEffect(() => {
+    if (props.defaultContent) {
+      setValue(props.defaultContent);
+    }
+  }, []);
   const handleContentChange = (value) => {
     setValue(value);
     props.onChange(value);

@@ -31,6 +31,9 @@ router.post(
   blogControllers.createNewBlog
 );
 
+// UPDATE update your blog
+router.put("/:blogId", isAuth, blogControllers.updateBlog);
+
 // DEL Delete Single Blog
 router.delete("/:blogId", isAuth, blogControllers.deleteSingleBlog);
 

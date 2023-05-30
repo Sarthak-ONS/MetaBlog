@@ -28,6 +28,10 @@ import ForgotPasswordForm, {
   action as ForgotPasswordFormAction,
 } from "./pages/AuthPages/ForgotPasswordForm";
 import Blogs from "./pages/Blogs/Blogs";
+import EditBlog, {
+  action as EditAction,
+  loader as EditLoader,
+} from "./pages/CreatorsPage/EditBlog";
 
 const router = createBrowserRouter([
   {
@@ -67,8 +71,13 @@ const router = createBrowserRouter([
       {
         path: "blog/new/",
         loader: checkAuthLoader,
-        // action: PublishBlogAction,
         element: <WriteBlog />,
+      },
+      {
+        path: "blog/edit/:blogId",
+        action: EditAction,
+        loader: EditLoader,
+        element: <EditBlog />,
       },
       {
         path: "creators",

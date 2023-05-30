@@ -38,10 +38,7 @@ const WriteBlog = () => {
       )}
       <div className={classes["editor__header"]}>
         <div></div>
-        <h1 className={classes["gradient__text"]}>
-          Write a new Blog
-          <AiOutlineEdit color="white" />
-        </h1>
+        <h1 className={classes["gradient__text"]}>Write a new Blog</h1>
         <button onClick={publishClickHandler}>Publish</button>
       </div>
       <br></br>
