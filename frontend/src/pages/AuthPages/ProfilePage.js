@@ -27,10 +27,15 @@ const ProfilePage = () => {
 
   const joinedDate = new Date(data.user.createdAt);
 
+  const profileImage =
+    "https://images.pexels.com/photos/16870215/pexels-photo-16870215/free-photo-of-woman-looking-over-her-sunglasses.jpeg?auto=compress&cs=tinysrgb&w=600";
+
   return (
     <div className={classes["Profile__Page"]}>
       <div className={classes["Profile__Page-c1"]}>
-        {data && data.user && <img src={data.user.image.secure_url} />}
+        {data && data.user && (
+          <img src={data.user.image.secure_url || profileImage} />
+        )}
         <div className={classes["Profile__Page-c1__name"]}>
           {data.user.name}
         </div>
@@ -61,22 +66,34 @@ const ProfilePage = () => {
                   readTimeText={bookmark.readTime}
                 />
               ))}
+            {data.user_uploaded_blogs.length === 0 && (
+              <>
+                <p>Please write a blog</p>
+              </>
+            )}
           </div>
         </div>
         <br></br>
         <div className={classes["User__uploadedBlogs"]}>
           <h2>Bookmarks</h2>
           <div className={classes["User__bookmark-bookmarkGrid"]}>
-            {data.user.bookmarks.map((bookmark) => (
-              <BlogCard
-                key={bookmark._id}
-                id={bookmark._id}
-                index={bookmark._id}
-                title={bookmark.title}
-                imageUrl={bookmark.image.secure_url}
-                readTimeText={bookmark.readTime}
-              />
-            ))}
+            {data.user_uploaded_blogs.length > 0 &&
+              data.user.bookmarks.map((bookmark) => (
+                <BlogCard
+                  key={bookmark._id}
+                  id={bookmark._id}
+                  index={bookmark._id}
+                  title={bookmark.title}
+                  imageUrl={bookmark.image.secure_url}
+                  readTimeText={bookmark.readTime}
+                />
+              ))}
+
+            {data.user_uploaded_blogs.length === 0 && (
+              <>
+                <p>Read Blogs</p>
+              </>
+            )}
           </div>
         </div>
       </div>
