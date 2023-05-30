@@ -7,6 +7,7 @@ const nodemailer = require("nodemailer");
 const { validationResult } = require("express-validator");
 
 const User = require("../models/user");
+const Blog = require("../models/blog");
 
 let transporter = nodemailer.createTransport({
   service: "hotmail",
@@ -20,11 +21,17 @@ exports.getUserProfile = async (req, res, next) => {
   try {
     const userId = req.userId;
 
-    const user = await User.findById(userId);
+    const user = await User.findById(userId)
+      .populate("bookmarks", ["image", "title", "readTime"])
+      .exec();
 
     user.password = undefined;
 
-    return res.status(200).json({ status: "SUCCESS", user });
+    const blogs = await Blog.find({ author: user._id }).limit(5);
+
+    return res
+      .status(200)
+      .json({ status: "SUCCESS", user, user_uploaded_blogs: blogs });
   } catch (error) {
     console.log(error);
     const err = new Error("Could not get Profile");

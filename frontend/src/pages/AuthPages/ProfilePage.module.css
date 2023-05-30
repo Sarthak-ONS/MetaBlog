@@ -1,3 +1,84 @@
 .Profile__Page {
+  padding: 2rem 2rem;
   padding-top: 4rem;
+  height: fit-content;
+  display: flex;
+  gap: 2rem;
+  /* height: 100vh; */
+  
+}
+.Profile__Page .Profile__Page-c1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Profile__Page .Profile__Page-c1 img {
+  border-radius: 50%;
+  height: 15rem;
+  width: 15rem;
+
+  border: 1px solid grey;
+}
+
+.Profile__Page .Profile__Page-c1 .Profile__Page-c1__name {
+  font-size: 3rem;
+  padding-top: 2rem;
+}
+
+.Profile__Page-c2 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.Profile__Page-c2 .Profile__Page-c2__joinedDate {
+  font-size: 2rem;
+}
+.gradient__text {
+  background: var(--gradient-text);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+input {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border: 0.5px solid #3d3b3b;
+  border-radius: 10px;
+  outline: none;
+  background-color: #0d1117;
+}
+
+.User__bookmark-bookmarkGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+@media (max-width: 650px) {
+  .Profile__Page {
+    flex-direction: column;
+    padding: 0 1rem;
+    height: fit-content;
+  }
+  .Profile__Page-c1__name {
+    font-size: 1.25rem;
+    text-align: center;
+  }
+  .gradient__text {
+    text-align: center;
+  }
+
+  .Profile__Page-c2 {
+    align-items: center;
+    gap: 1rem;
+  }
 }

@@ -22,16 +22,11 @@ const BlogCard = ({
     <motion.div
       onClick={buttonClickHandler}
       whileHover={{ scale: 1 }}
-      whileTap={{ scale: 0.7 }}
+      whileTap={{ scale: 0.9 }}
       className={classes["card"]}
       initial={{ opacity: 0 }}
-      transition={{ ease: "easeOut", duration: 2 }}
-      whileInView={{
-        opacity: [0.5, 1],
-        scale: 0.95,
-        y: [-100, -70, -50, -30, 0],
-      }}
-      viewport={{ once: true }}
+      whileInView={{ opacity: [0, 1] }}
+      transition={{ duration: 0.5, type: "tween" }}
     >
       <img alt="" src={imageUrl}></img>
       <div className={classes["card-content"]}>
