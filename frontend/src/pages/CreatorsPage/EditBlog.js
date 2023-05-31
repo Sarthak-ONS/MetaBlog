@@ -15,10 +15,6 @@ const EditBlog = () => {
   const data = useActionData();
 
   const loaderdata = useLoaderData();
-
-  console.log(loaderdata, "This is loader data");
-
-  console.log(data);
   const navigation = useNavigation();
 
   const isSubmitting = navigation.state === "submitting";
@@ -67,6 +63,16 @@ const EditBlog = () => {
                   type="text"
                 />
               </div>
+              <div style={{ display: "none" }} className={classes["user-box"]}>
+                <label htmlFor="subtitle">Image</label>
+                <input
+                  type="file"
+                  name="image"
+                  id="image-input"
+                  style={{ display: "none" }}
+                  onChange={handleImageChange}
+                />
+              </div>
               <div className={classes["user-box"]}>
                 <label htmlFor="tags">Tags</label>
                 <input
@@ -107,13 +113,6 @@ const EditBlog = () => {
               </button>
             )}
           </div>
-          <input
-            type="file"
-            name="image"
-            id="image-input"
-            style={{ display: "none" }}
-            onChange={handleImageChange}
-          />
         </Form>
       </div>
     </div>
@@ -145,37 +144,43 @@ export async function action({ request, params }) {
   const par = params;
 
   console.log(par);
+  // console.log(data);
 
-  const blogId = "";
+  // const blogId = "";
 
   const blogData = {
-    email: data.get("email"),
-    password: data.get("password"),
+    title: data.get("title"),
+    subtitle: data.get("subtitle"),
+    image: data.get("image"),
+    tags: data.get("tags"),
+    category: data.get("category"),
   };
 
-  const response = await fetch("http://localhost:4000/blog/edit/" + blogId, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + token,
-    },
-    body: JSON.stringify(blogData),
-  });
+  console.log(blogData);
 
-  if (
-    response.status === 422 ||
-    response.status === 401 ||
-    response.status === 404
-  ) {
-    return response;
-  }
+  // const response = await fetch("http://localhost:4000/blog/edit/" + blogId, {
+  //   method: "PUT",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //     Authorization: "Bearer " + token,
+  //   },
+  //   body: JSON.stringify(blogData),
+  // });
 
-  if (!response.ok) {
-    const data = { message: "Could not Update Blog. Please try again later!" };
-    throw { isError: true, message: data.message, status: response.status };
-  }
+  // if (
+  //   response.status === 422 ||
+  //   response.status === 401 ||
+  //   response.status === 404
+  // ) {
+  //   return response;
+  // }
 
-  return response;
+  // if (!response.ok) {
+  //   const data = { message: "Could not Update Blog. Please try again later!" };
+  //   throw { isError: true, message: data.message, status: response.status };
+  // }
+
+  return {};
 }
 
 export default EditBlog;
