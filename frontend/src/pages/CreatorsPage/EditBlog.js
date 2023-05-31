@@ -28,10 +28,11 @@ const EditBlog = () => {
   };
 
   const handleImageChange = (e) => {
-    console.log(e);
+    console.log(e.target.files[0]);
   };
 
   const imageClickHandler = () => {
+    console.log("CLICKED IMAGE");
     document.getElementById("image-input").click();
   };
 
@@ -108,6 +109,7 @@ const EditBlog = () => {
           </div>
           <input
             type="file"
+            name="image"
             id="image-input"
             style={{ display: "none" }}
             onChange={handleImageChange}
