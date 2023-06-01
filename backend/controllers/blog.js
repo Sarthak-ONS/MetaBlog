@@ -106,18 +106,6 @@ exports.createNewBlog = async (req, res, next) => {
       },
     });
 
-    // let modifiedCategories = [];
-
-    // let modifiedTags = [];
-
-    // category.forEach((item) => {
-    //   modifiedCategories.push(item.toLowerCase());
-    // });
-
-    // tags.forEach((item) => {
-    //   modifiedTags.push(item.toLowerCase());
-    // });
-
     const blog = new Blog({
       title,
       subtitle,
@@ -172,11 +160,12 @@ exports.updateBlog = async (req, res, next) => {
       res.status(200).json({ status: "SUCCESS", message: "Nothing to Update" });
     }
 
-    let file = req.files.image;
-
     let readTime;
     let result;
     if (req.files) {
+      console.log("BLOG CONTAINS IMAGE WHICH IS AS FOLLOWS");
+      console.log(req.files.image);
+      let file = req.files.image;
       result = await cloudinary.v2.uploader.upload(file.tempFilePath, {
         folder: "blogs",
         unique_filenfame: true,
