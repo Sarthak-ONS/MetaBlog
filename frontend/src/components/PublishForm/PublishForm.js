@@ -30,7 +30,7 @@ const PublishForm = (props) => {
     formData.append("tags", tagsRef.current.value);
 
     const token = getAuthToken();
-    const response = await await fetch("http://localhost:4000/blog/new", {
+    const response = await fetch("http://localhost:4000/blog/new", {
       method: "POST",
       headers: {
         Authorization: "Bearer " + token,

@@ -6,6 +6,7 @@ import {
   useNavigation,
   useActionData,
   useLoaderData,
+  redirect,
 } from "react-router-dom";
 import Loader from "../../components/Loaders/Loader";
 import { getAuthToken } from "../../utils/auth";
@@ -25,7 +26,7 @@ const EditBlog = () => {
   const loaderdata = useLoaderData();
   const navigation = useNavigation();
 
-  const isSubmitting = navigation.state === "submitting";
+  const [isSubmitting, setisSubmitting] = useState();
 
   const handleContentdata = (updatedContentData) => {
     setContent(updatedContentData);
@@ -42,31 +43,29 @@ const EditBlog = () => {
   };
 
   const updateSubmitHandler = async (e) => {
+    setisSubmitting(true);
     e.preventDefault();
-    console.log("FORM IS SUBMITTED");
 
     const token = getAuthToken();
 
-    const blogData = {
-      title: titleRef.current.value,
-      subtitle: subtitleRef.current.value,
-      tags: subtitleRef.current.value,
-      category: categoryRef.current.value,
-      image: image,
-      content: content,
-    };
+    const blogData = new FormData();
 
-    console.log(loaderdata.blog);
+    blogData.append("title", titleRef.current.value);
+    blogData.append("subtitle", subtitleRef.current.value);
+    blogData.append("category", categoryRef.current.value);
+    blogData.append("tags", tagsRef.current.value);
+    blogData.append("image", image);
+    blogData.append("content", content);
 
     const response = await fetch(
       "http://localhost:4000/blog/" + loaderdata.blog._id,
       {
         method: "PUT",
         headers: {
-          "Content-Type": "application/json",
+          // "Content-Type": "application/json",
           Authorization: "Bearer " + token,
         },
-        body: JSON.stringify(blogData),
+        body: blogData,
       }
     );
 
@@ -75,17 +74,20 @@ const EditBlog = () => {
       response.status === 401 ||
       response.status === 404
     ) {
+      setisSubmitting(false);
       console.log(await response.json());
     }
 
     if (!response.ok) {
+      setisSubmitting(false);
       const data = {
         message: "Could not Update Blog. Please try again later!",
       };
       throw { isError: true, message: data.message, status: response.status };
     }
 
-    console.log(await response.json());
+    setisSubmitting(false);
+    return redirect("/");
   };
 
   return (
