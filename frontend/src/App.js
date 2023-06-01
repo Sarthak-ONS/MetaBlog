@@ -29,7 +29,7 @@ import ForgotPasswordForm, {
 } from "./pages/AuthPages/ForgotPasswordForm";
 import Blogs from "./pages/Blogs/Blogs";
 import EditBlog, {
-  action as EditAction,
+  // action as EditAction,
   loader as EditLoader,
 } from "./pages/CreatorsPage/EditBlog";
 
@@ -75,7 +75,7 @@ const router = createBrowserRouter([
       },
       {
         path: "blog/edit/:blogId",
-        action: EditAction,
+        // action: EditAction,
         loader: EditLoader,
         element: <EditBlog />,
       },

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import classes from "./EditBlog.module.css";
 
 import {
@@ -12,6 +12,14 @@ import { getAuthToken } from "../../utils/auth";
 import EditorComponent from "../../components/Editor/EditorComponent";
 
 const EditBlog = () => {
+  const titleRef = useRef();
+  const subtitleRef = useRef();
+  const categoryRef = useRef();
+  const tagsRef = useRef();
+
+  const [image, setImage] = useState();
+  const [content, setContent] = useState();
+
   const data = useActionData();
 
   const loaderdata = useLoaderData();
@@ -20,16 +28,64 @@ const EditBlog = () => {
   const isSubmitting = navigation.state === "submitting";
 
   const handleContentdata = (updatedContentData) => {
-    console.log(updatedContentData);
+    setContent(updatedContentData);
   };
 
   const handleImageChange = (e) => {
     console.log(e.target.files[0]);
+    setImage(e.target.files[0]);
   };
 
   const imageClickHandler = () => {
     console.log("CLICKED IMAGE");
     document.getElementById("image-input").click();
+  };
+
+  const updateSubmitHandler = async (e) => {
+    e.preventDefault();
+    console.log("FORM IS SUBMITTED");
+
+    const token = getAuthToken();
+
+    const blogData = {
+      title: titleRef.current.value,
+      subtitle: subtitleRef.current.value,
+      tags: subtitleRef.current.value,
+      category: categoryRef.current.value,
+      image: image,
+      content: content,
+    };
+
+    console.log(loaderdata.blog);
+
+    const response = await fetch(
+      "http://localhost:4000/blog/" + loaderdata.blog._id,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify(blogData),
+      }
+    );
+
+    if (
+      response.status === 422 ||
+      response.status === 401 ||
+      response.status === 404
+    ) {
+      console.log(await response.json());
+    }
+
+    if (!response.ok) {
+      const data = {
+        message: "Could not Update Blog. Please try again later!",
+      };
+      throw { isError: true, message: data.message, status: response.status };
+    }
+
+    console.log(await response.json());
   };
 
   return (
@@ -42,7 +98,11 @@ const EditBlog = () => {
         {data && data.status === "ERROR" && (
           <p className={classes["error__msg"]}>{data.errorMessage}</p>
         )}
-        <Form className={classes.form} method="PUT">
+        <Form
+          className={classes.form}
+          method="PUT"
+          onSubmit={updateSubmitHandler}
+        >
           <div className={classes["c1"]}>
             <div className={classes["c1-c1"]}>
               <div className={classes["user-box"]}>
@@ -52,6 +112,7 @@ const EditBlog = () => {
                   required
                   name="title"
                   type="text"
+                  ref={titleRef}
                 />
               </div>
               <div className={classes["user-box"]}>
@@ -61,10 +122,11 @@ const EditBlog = () => {
                   required
                   name="subtitle"
                   type="text"
+                  ref={subtitleRef}
                 />
               </div>
               <div style={{ display: "none" }} className={classes["user-box"]}>
-                <label htmlFor="subtitle">Image</label>
+                <label htmlFor="image">Image</label>
                 <input
                   type="file"
                   name="image"
@@ -80,6 +142,7 @@ const EditBlog = () => {
                   required
                   name="tags"
                   type="text"
+                  ref={tagsRef}
                 />
               </div>
               <div className={classes["user-box"]}>
@@ -89,6 +152,7 @@ const EditBlog = () => {
                   required
                   name="category"
                   type="text"
+                  ref={categoryRef}
                 />
               </div>
             </div>
@@ -119,7 +183,7 @@ const EditBlog = () => {
   );
 };
 
-export async function loader({ params }) {
+export async function loader({ request, params }) {
   const token = getAuthToken();
   const response = await fetch("http://localhost:4000/blog/" + params.blogId, {
     headers: {
@@ -139,7 +203,6 @@ export async function loader({ params }) {
 
 export async function action({ request, params }) {
   const data = await request.formData();
-  const token = getAuthToken();
 
   const par = params;
 
@@ -157,28 +220,7 @@ export async function action({ request, params }) {
   };
 
   console.log(blogData);
-
-  // const response = await fetch("http://localhost:4000/blog/edit/" + blogId, {
-  //   method: "PUT",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     Authorization: "Bearer " + token,
-  //   },
-  //   body: JSON.stringify(blogData),
-  // });
-
-  // if (
-  //   response.status === 422 ||
-  //   response.status === 401 ||
-  //   response.status === 404
-  // ) {
-  //   return response;
-  // }
-
-  // if (!response.ok) {
-  //   const data = { message: "Could not Update Blog. Please try again later!" };
-  //   throw { isError: true, message: data.message, status: response.status };
-  // }
+  console.log(request);
 
   return {};
 }

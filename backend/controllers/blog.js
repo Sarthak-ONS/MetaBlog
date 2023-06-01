@@ -2,7 +2,6 @@ const { validationResult } = require("express-validator");
 const cloudinary = require("cloudinary");
 const Blog = require("../models/blog");
 const User = require("../models/user");
-const blog = require("../models/blog");
 
 const categories = [
   { index: 1, name: "Food" },
@@ -154,13 +153,15 @@ exports.updateBlog = async (req, res, next) => {
   const { title, subtitle, content, tags, category } = req.body;
 
   try {
-    const blog = Blog.findById(blogId);
+    const blog = await Blog.findById(blogId);
 
     if (!blog) {
       const err = new Error("Blog not found");
       err.httpStatusCode = 404;
       return next(err);
     }
+
+    console.log(blog.author, "/////////////////////");
 
     if (blog.author.toString() !== req.userId) {
       const err = new Error("You are not authorized to update this blog");
@@ -173,10 +174,7 @@ exports.updateBlog = async (req, res, next) => {
 
     let file = req.files.image;
 
-    const readTime =
-      parseInt((content.split(" ").length / 200).toString()) <= 0
-        ? 1
-        : parseInt((content.split(" ").length / 200).toString()) + " min read";
+    let readTime;
     let result;
     if (req.files) {
       result = await cloudinary.v2.uploader.upload(file.tempFilePath, {
@@ -210,6 +208,16 @@ exports.updateBlog = async (req, res, next) => {
     }
     if (category) {
       blog.category = [category.toLowerCase()];
+    }
+
+    if (content) {
+      blog.content = content;
+      const readTime =
+        parseInt((content.split(" ").length / 200).toString()) <= 0
+          ? 1
+          : parseInt((content.split(" ").length / 200).toString()) +
+            " min read";
+      blog.readTime = readTime;
     }
     await blog.save();
 
