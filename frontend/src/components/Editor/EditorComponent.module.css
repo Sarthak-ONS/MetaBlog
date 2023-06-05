@@ -16,3 +16,10 @@
 ::placeholder {
   color: white;
 }
+
+@media (max-width: 650px) {
+  .quill {
+    margin: 1rem 0rem;
+    border: 1px solid white;
+  }
+}

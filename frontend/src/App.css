@@ -16,6 +16,10 @@
   color: white;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 ul {
   list-style: none;
 }

@@ -116,3 +116,8 @@
 .forgotPassword {
   cursor: pointer;
 }
+
+@media (max-width: 650px) {
+  .login-box {
+  }
+}

@@ -29,7 +29,7 @@
   flex-direction: column;
   align-items: center;
 }
-.SingleBlog__actions-headings h5{
+.SingleBlog__actions-headings h5 {
   font-weight: 500;
   padding: 1rem 0;
 }
@@ -86,4 +86,21 @@
 .SingleBlog__header-content {
   /* padding: 2rem 0; */
   text-align: justify;
+}
+
+@media (max-width: 650px) {
+  .SingleBlog__header {
+    margin: 0;
+  }
+  .SingleBlog__header-content {
+    margin: 1rem 1rem;
+  }
+
+  .SingleBlog__actions {
+    flex-direction: column;
+  }
+
+  .SingleBlog__actions-buttons {
+    margin: 1rem 0;
+  }
 }

@@ -220,6 +220,24 @@ const Navbar = () => {
                   Write
                 </NavLink>
               </p>
+              {!token && (
+                <div className={classes["nav__button"]}>
+                  <CustomButton
+                    text={"Login"}
+                    onClick={loginClickHandler.bind(null, "login")}
+                  />
+                  <CustomButton
+                    color={"var(--color-text)"}
+                    text={"Sign up"}
+                    onClick={loginClickHandler.bind(null, "signup")}
+                  />
+                </div>
+              )}
+              {token && (
+                <div className={classes["LoginUI"]}>
+                  <img src={person} onClick={loginUIHandler} />
+                </div>
+              )}
             </div>
           )}
         </>

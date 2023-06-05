@@ -30,3 +30,17 @@
   padding-bottom: 0.5rem;
   text-align: center;
 }
+
+@media (max-width: 650px) {
+  .EditPage {
+    padding: 1rem;
+  }
+
+  .c1 {
+    flex-direction: column;
+  }
+
+  .form{
+    gap: 0.5rem;
+  }
+}
